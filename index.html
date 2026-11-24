@@ -2,8 +2,8 @@
 <html lang="vi"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#F3F2EB">
-<title>nminh ios — Make File Lab</title>
+<meta name="theme-color" content="#080B10">
+<title>NMINHIOS — Silver Neon Make File Lab</title>
 <style>
 :root{
   color-scheme:light;
@@ -221,7 +221,7 @@ input[type=range]{width:100%;margin:0;accent-color:#7D9F2C;cursor:pointer}
 .dvi-preview{position:relative;overflow:hidden;border:1px solid transparent;border-radius:19px;padding:16px 15px 14px;margin:-2px 0 14px;background:radial-gradient(ellipse at 15% 15%,rgba(85,235,217,.20),transparent 45%),radial-gradient(ellipse at 85% 80%,rgba(185,111,255,.20),transparent 42%),linear-gradient(135deg,#08131f,#20142e) padding-box,conic-gradient(from 0deg,#50f4d2,#55a8ff,#b26dff,#ff70bc,#ffca70,#50f4d2) border-box;box-shadow:0 0 24px rgba(92,206,255,.11);animation:dviBreath 4.8s ease-in-out infinite alternate}
 .dvi-preview:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(105deg,transparent 15%,rgba(255,255,255,.12) 48%,transparent 72%);transform:translateX(-120%);animation:dviSweep 5s ease-in-out infinite}
 .dvi-preview-kicker{font-size:8px;letter-spacing:.2em;font-weight:950;color:#8DF7E7;position:relative;z-index:1}
-.dvi-preview-title{position:relative;z-index:1;margin-top:7px;font-size:clamp(18px,5vw,26px);line-height:1.1;font-weight:950;letter-spacing:.035em;color:#F5FBFF;text-shadow:0 0 13px rgba(95,234,255,.65),0 0 28px rgba(191,105,255,.35)}
+.dvi-preview-title{position:relative;z-index:1;margin-top:7px;max-width:100%;overflow-wrap:anywhere;word-break:break-word;font-size:clamp(18px,5vw,26px);line-height:1.1;font-weight:950;letter-spacing:.035em;color:#F5FBFF;text-shadow:0 0 13px rgba(95,234,255,.65),0 0 28px rgba(191,105,255,.35)}
 .dvi-spectrum{height:8px;border-radius:999px;margin-top:14px;background:linear-gradient(90deg,#ff4f84,#ffbd57,#eaff6a,#54f5bf,#53ccff,#7e80ff,#dc75ff,#ff4f84);background-size:250% 100%;animation:dviFlow 4s linear infinite;box-shadow:0 0 15px rgba(107,218,255,.23)}
 .dvi-preview-note{position:relative;z-index:1;margin:8px 0 0;color:#AAB6CC;font-size:9px;line-height:1.45}
 .dvi-theme-head{font-size:10px;font-weight:900;letter-spacing:.08em;color:#CFD8E8;margin:14px 0 8px}
@@ -250,29 +250,401 @@ input[type=range]{width:100%;margin:0;accent-color:#7D9F2C;cursor:pointer}
 @keyframes dviSweep{0%,32%{transform:translateX(-120%)}75%,100%{transform:translateX(120%)}}
 @media(prefers-reduced-motion:reduce){.dvi-preview,.dvi-preview:after,.dvi-spectrum{animation:none!important}}
 
+
+/* DVI Custom Studio · giao diện điều khiển bổ sung */
+.dvi-preview-custom{margin:-4px 0 14px;padding:11px 12px 10px;border:1px solid rgba(133,217,255,.16);border-radius:13px;background:rgba(255,255,255,.045)}
+.dvi-preview-custom label{display:flex;justify-content:space-between;gap:8px;align-items:center;color:#9DEFE4;font-size:9px;font-weight:950;letter-spacing:.1em}
+.dvi-preview-custom label span{color:#90A5BB;font-weight:600;letter-spacing:0;text-align:right}
+.dvi-preview-custom input{display:block;width:100%;box-sizing:border-box;margin-top:8px;padding:10px 11px;border:1px solid #35465E;border-radius:10px;background:#101827;color:#F4FAFF;font-size:12px;font-weight:850;letter-spacing:.035em;outline:none}
+.dvi-preview-custom input:focus{border-color:#70E8DC;box-shadow:0 0 0 3px rgba(112,232,220,.12)}
+.dvi-preview-custom p{margin:7px 0 0;color:#AAB9CC;font-size:9px;line-height:1.5}
+.dvi-style-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.dvi-style{position:relative;min-height:58px;padding:10px 11px;border:1px solid rgba(255,255,255,.14);border-radius:12px;background:linear-gradient(135deg,#162235,#211b37);color:#F4F8FF;text-align:left;overflow:hidden;transition:transform .16s,border-color .16s,filter .16s}
+.dvi-style:before{content:"";position:absolute;inset:0;opacity:.16;background:linear-gradient(110deg,#60F4DD,transparent 42%,#C57EFF);pointer-events:none}
+.dvi-style:active,.dvi-motion:active,.dvi-config-btn:active{transform:scale(.985)}
+.dvi-style b,.dvi-style small{position:relative;display:block}
+.dvi-style b{font-size:10px;font-weight:950;letter-spacing:.07em}
+.dvi-style small{margin-top:4px;color:#AEBBD0;font-size:8px;line-height:1.35}
+.dvi-speed-head{margin:13px 0 7px;color:#CAD7E8;font-size:9px;font-weight:950;letter-spacing:.12em}
+.dvi-motion-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
+.dvi-motion{min-width:0;min-height:62px;padding:9px 7px;border:1px solid rgba(255,255,255,.13);border-radius:11px;background:rgba(255,255,255,.055);color:#F2F7FF;text-align:left}
+.dvi-motion b{display:block;font-size:8px;line-height:1.3;font-weight:950;letter-spacing:.04em}
+.dvi-motion small{display:block;margin-top:4px;color:#AAB8CB;font-size:7px;line-height:1.35}
+.dvi-config-tools{margin-top:14px;padding:12px;border:1px solid rgba(133,217,255,.15);border-radius:13px;background:rgba(255,255,255,.04)}
+.dvi-config-copy{margin:5px 0 10px;color:#AAB9CC;font-size:9px;line-height:1.5}
+.dvi-config-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+.dvi-config-btn{min-height:40px;padding:8px 9px;border:1px solid rgba(255,255,255,.15);border-radius:10px;background:#1B293A;color:#E9F4FF;font-size:9px;font-weight:900;line-height:1.25}
+.dvi-config-btn.primary{border-color:transparent;background:linear-gradient(100deg,#73F0D8,#8BC9FF);color:#10202A}
+.dvi-config-status{margin-top:9px;padding:8px 9px;border:1px solid rgba(255,255,255,.09);border-radius:9px;background:rgba(0,0,0,.13);color:#B6C6D8;font-size:9px;line-height:1.45;overflow-wrap:anywhere}
+@media(max-width:360px){.dvi-motion-grid{grid-template-columns:1fr}.dvi-motion{min-height:45px}.dvi-config-actions{grid-template-columns:1fr}}
+
+
+/* NMINHIOS LAB · multi-tool workspace */
+.dvi-lab{margin-top:17px;padding-top:15px;border-top:1px solid rgba(143,242,228,.18)}
+.dvi-lab-title{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin:0 0 11px}
+.dvi-lab-title b{display:block;color:#F1F7FF;font-size:14px;font-weight:950;letter-spacing:-.025em}
+.dvi-lab-title small{display:block;color:#9FB1C7;font-size:9px;line-height:1.45;margin-top:3px}
+.dvi-lab-tag{flex:none;border:1px solid rgba(112,232,220,.35);background:rgba(112,232,220,.1);color:#8FF2E4;padding:5px 8px;border-radius:8px;font-size:8px;font-weight:950;letter-spacing:.1em}
+.lab-card{margin-top:10px;padding:13px;border:1px solid rgba(160,190,220,.15);border-radius:15px;background:linear-gradient(145deg,rgba(255,255,255,.065),rgba(255,255,255,.025))}
+.lab-card-head{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px}
+.lab-num{width:29px;height:29px;display:grid;place-items:center;flex:none;border-radius:9px;background:linear-gradient(135deg,#75F2DC,#A6A2FF);color:#071722;font-size:10px;font-weight:950}
+.lab-card-head b{display:block;color:#F0F7FF;font-size:12px;font-weight:950}
+.lab-card-head small{display:block;color:#9FB0C5;font-size:9px;line-height:1.45;margin-top:3px}
+.lab-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px;margin-top:8px}
+.lab-field{min-width:0;padding:9px 10px;border:1px solid rgba(170,195,220,.15);border-radius:11px;background:rgba(8,18,32,.45)}
+.lab-field label{display:block;color:#B8C9DA;font-size:9px;font-weight:850;margin-bottom:6px}
+.lab-field input[type=text],.lab-field select,.lab-field input[type=file]{width:100%;min-width:0;color:#EAF3FF;font-size:10px}
+.lab-field input[type=text],.lab-field select{min-height:36px;padding:8px;border:1px solid #36495F;border-radius:8px;background:#101B2B;outline:none}
+.lab-field input[type=file]{font-size:9px}
+.lab-btn-row{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px}
+.lab-btn{min-height:38px;padding:9px 11px;border:1px solid rgba(157,190,218,.22);border-radius:10px;background:rgba(255,255,255,.07);color:#EAF4FF;font-size:9px;font-weight:900}
+.lab-btn.primary{border-color:#72DFD3;background:linear-gradient(110deg,#79EAD9,#B1C7FF);color:#071B27}
+.lab-btn.danger{border-color:rgba(255,135,150,.35);color:#FFC1C9}
+.lab-btn:disabled{opacity:.4;cursor:not-allowed}
+.lab-range{margin-top:10px;padding:10px;border:1px solid rgba(157,190,218,.15);border-radius:11px;background:rgba(8,18,32,.4)}
+.lab-range label{display:flex;justify-content:space-between;gap:8px;color:#C7D6E7;font-size:9px;font-weight:850;margin-bottom:7px}
+.lab-range b{color:#8FF2E4;font-family:var(--mono)}
+.lab-status{margin-top:9px;padding:10px 11px;border:1px solid rgba(143,242,228,.14);border-radius:10px;background:rgba(7,18,30,.55);color:#AFC0D4;font-size:9px;line-height:1.55;overflow-wrap:anywhere;white-space:pre-wrap}
+.lab-status.good{border-color:rgba(122,232,183,.32);color:#BDF8D8}
+.lab-status.bad{border-color:rgba(255,150,140,.34);color:#FFC1B9}
+.lab-status.warn{border-color:rgba(255,207,116,.3);color:#FFE1A5}
+.lab-table-wrap{max-height:310px;overflow:auto;margin-top:9px;border:1px solid rgba(157,190,218,.14);border-radius:10px}
+.lab-table{width:100%;border-collapse:collapse;font-size:8px;color:#CFDCEC}
+.lab-table th,.lab-table td{padding:8px 7px;border-bottom:1px solid rgba(157,190,218,.11);text-align:left;vertical-align:top;overflow-wrap:anywhere}
+.lab-table th{position:sticky;top:0;background:#172638;color:#8FF2E4;font-weight:950;letter-spacing:.06em}
+.lab-table td code{font-family:var(--mono);color:#DCE9F8}
+.lab-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin-top:9px}
+.lab-metric{padding:9px 7px;border:1px solid rgba(157,190,218,.14);border-radius:10px;background:rgba(8,18,32,.45);min-width:0}
+.lab-metric b{display:block;color:#F2F8FF;font-size:16px;line-height:1.1;font-weight:950;font-family:var(--mono)}
+.lab-metric small{display:block;color:#91A8C0;font-size:8px;margin-top:4px}
+.lab-batch-list{display:grid;gap:6px;margin-top:8px}
+.lab-batch-item{display:flex;justify-content:space-between;gap:10px;padding:8px 9px;border:1px solid rgba(157,190,218,.13);border-radius:9px;background:rgba(8,18,32,.38);font-size:9px;color:#C9D8E8}
+.lab-batch-item span:last-child{font-weight:900;color:#8FF2E4;flex:none}
+.lab-batch-item.fail span:last-child{color:#FFB3A9}
+.lab-disclaimer{margin-top:8px;color:#8399B1;font-size:8px;line-height:1.5}
+@media(max-width:390px){.lab-row{grid-template-columns:1fr}.lab-metrics{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
+
+/* NMINHIOS WEAPON LOCATOR LAB — target matrix, presets and live preview */
+.weapon-lab{background:linear-gradient(145deg,#111827,#172033 60%,#121a29);border-color:rgba(106,211,255,.2);color:#edf6ff;box-shadow:0 12px 34px rgba(10,22,40,.12)}
+.weapon-lab .panel-title h3,.weapon-lab .panel-heading-row h3{color:#f1f7ff}
+.weapon-lab .panel-title p,.weapon-lab .weapon-help{color:#a9b8cc}
+.weapon-lab .panel-pill{background:linear-gradient(110deg,#56e8d4,#69aefb,#b38aff);color:#101827}
+.weapon-target-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:12px}
+.weapon-target{display:flex;align-items:flex-start;gap:9px;min-width:0;padding:11px 10px;border:1px solid rgba(255,255,255,.11);border-radius:13px;background:rgba(255,255,255,.045)}
+.weapon-target input{width:17px;height:17px;flex:none;margin:1px 0 0;accent-color:#69e6d2}
+.weapon-target b{display:block;font-size:10px;line-height:1.3;color:#f2f7ff;overflow-wrap:anywhere}
+.weapon-target small{display:block;margin-top:3px;font-size:8px;line-height:1.4;color:#9eafc6;overflow-wrap:anywhere}
+.weapon-target-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.weapon-target-actions button,.weapon-config-actions button{padding:9px 11px;border:1px solid rgba(255,255,255,.14);border-radius:10px;background:rgba(255,255,255,.07);color:#e9f4ff;font-size:9px;font-weight:850}
+.weapon-summary{margin-top:10px;padding:10px 11px;border:1px solid rgba(93,221,210,.16);border-radius:11px;background:rgba(63,190,183,.07);color:#b8cce0;font-size:9px;line-height:1.5}
+.weapon-look-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:12px}
+.weapon-look{position:relative;overflow:hidden;min-height:68px;padding:11px;border:1px solid rgba(255,255,255,.15);border-radius:13px;text-align:left;color:#fff;background:linear-gradient(120deg,var(--look-a),var(--look-b));box-shadow:inset 0 1px 0 rgba(255,255,255,.16);transition:transform .15s,filter .15s}
+.weapon-look:active{transform:scale(.98)}
+.weapon-look b{display:block;font-size:10px;font-weight:950;letter-spacing:.02em}
+.weapon-look small{display:block;margin-top:4px;color:rgba(255,255,255,.78);font-size:8px;line-height:1.35}
+.weapon-preview{position:relative;overflow:hidden;margin-top:12px;padding:13px;border:1px solid rgba(134,207,255,.17);border-radius:15px;background:radial-gradient(circle at 18% 10%,rgba(82,220,225,.13),transparent 40%),linear-gradient(145deg,#0a1220,#11182a)}
+.weapon-preview-head{display:flex;align-items:center;justify-content:space-between;gap:8px;color:#a9bad0;font-size:8px;font-weight:900;letter-spacing:.13em}
+.weapon-preview-head span:last-child{color:#74eadc}
+.weapon-visual{--weapon-palette:linear-gradient(90deg,#ff4545,#ffc04a,#f6ff67,#54e8a5,#54bfff,#757bff,#e079ff);--weapon-edge:#fff;--weapon-glow:rgba(83,202,255,.55);position:relative;height:80px;margin-top:9px;display:flex;align-items:center;justify-content:center;filter:drop-shadow(0 0 8px var(--weapon-glow));}
+.weapon-shape{position:relative;width:min(90%,300px);height:46px}
+.weapon-shape .w-barrel{position:absolute;left:64%;top:12px;width:32%;height:8px;border:1px solid var(--weapon-edge);border-radius:2px;background:var(--weapon-palette)}
+.weapon-shape .w-muzzle{position:absolute;left:94%;top:10px;width:6%;height:12px;border:1px solid var(--weapon-edge);border-radius:2px;background:var(--weapon-palette)}
+.weapon-shape .w-body{position:absolute;left:25%;top:9px;width:42%;height:22px;border:1.5px solid var(--weapon-edge);border-radius:6px 4px 4px 5px;background:var(--weapon-palette);box-shadow:inset 0 0 8px rgba(255,255,255,.15)}
+.weapon-shape .w-stock{position:absolute;left:4%;top:14px;width:23%;height:12px;border:1px solid var(--weapon-edge);border-radius:4px 1px 1px 4px;background:var(--weapon-palette)}
+.weapon-shape .w-grip{position:absolute;left:42%;top:28px;width:9%;height:18px;transform:skew(-14deg);border:1px solid var(--weapon-edge);border-radius:1px 1px 4px 4px;background:var(--weapon-palette)}
+.weapon-shape .w-mag{position:absolute;left:55%;top:28px;width:10%;height:15px;transform:skew(8deg);border:1px solid var(--weapon-edge);border-radius:1px 1px 4px 4px;background:var(--weapon-palette)}
+.weapon-visual.pulse-on .weapon-shape{animation:weaponPreviewPulse 1.6s ease-in-out infinite alternate}
+@keyframes weaponPreviewPulse{from{filter:brightness(.72)}to{filter:brightness(1.45)}}
+.weapon-preview-note{margin-top:5px;color:#91a6c0;font-size:8px;line-height:1.45}
+.weapon-config-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:11px}
+.weapon-config-actions .weapon-import-label{display:inline-flex;align-items:center;justify-content:center;padding:9px 11px;border:1px solid rgba(255,255,255,.14);border-radius:10px;background:rgba(255,255,255,.07);color:#e9f4ff;font-size:9px;font-weight:850}
+.weapon-config-actions input[type=file]{display:none}
+.weapon-status{margin-top:9px;padding:9px 10px;border:1px solid rgba(255,255,255,.12);border-radius:10px;color:#a9bed5;background:rgba(255,255,255,.04);font-size:9px;line-height:1.5}
+@media(max-width:360px){.weapon-target-grid,.weapon-look-grid{grid-template-columns:1fr}.weapon-target{padding:10px}}
+
+
+
+/* ═══════════════════════════════════════════════════════════════
+   NMINHIOS SILVER / BLACK / CHROME NEON — complete visual rebuild
+   Uses the existing controls and IDs; the processing engine is unchanged.
+   ═══════════════════════════════════════════════════════════════ */
+:root{
+  color-scheme:dark;
+  --bg:#07090D;
+  --paper:#F3F5F8;
+  --ink:#0A0E14;
+  --muted:#677180;
+  --line:#C9D0D9;
+  --acid:#7CF2FF;
+  --acid-dark:#09151D;
+  --coral:#FF7FA8;
+  --soft:#E7EBF0;
+  --shadow:0 22px 56px rgba(0,0,0,.34);
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --night:#0A0E14;
+  --night-2:#111720;
+  --chrome:#DCE2E9;
+  --chrome-dark:#9DA8B6;
+  --neon:#7CF2FF;
+  --neon-violet:#B6A3FF;
+}
+html{min-height:100%;background:#07090D;scroll-behavior:smooth;scroll-padding-top:90px}
+body{
+  min-height:100vh;padding:18px 14px 58px;color:#F3F6FA;
+  background:
+    radial-gradient(ellipse at 4% 7%,rgba(124,242,255,.11),transparent 29%),
+    radial-gradient(ellipse at 97% 27%,rgba(182,163,255,.095),transparent 30%),
+    radial-gradient(ellipse at 50% 100%,rgba(196,210,225,.07),transparent 34%),
+    linear-gradient(160deg,#07090D 0%,#0B0F15 52%,#07090D 100%);
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",sans-serif;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+}
+body:before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.12;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:38px 38px;mask-image:linear-gradient(to bottom,black,transparent 78%)}
+button,input,select,textarea{font:inherit}
+button{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.wrap{width:100%;max-width:820px;margin:0 auto}
+.topbar{align-items:center;gap:14px;margin:0 2px 13px;padding:3px 1px 10px}
+.brand{gap:13px}
+.avatar-frame.brand-mark{width:52px;height:52px;padding:1px;border-radius:16px;transform:none;background:linear-gradient(140deg,#FFFFFF 0%,#BFC8D3 28%,#586575 53%,#F4F7FB 73%,#7CF2FF 100%);box-shadow:0 0 0 1px rgba(255,255,255,.18),0 8px 26px rgba(124,242,255,.12)}
+.brand-mark span{display:grid;place-items:center;width:100%;height:100%;border-radius:15px;background:linear-gradient(145deg,#080C12,#1B2430);color:#F5F8FC;font-size:17px;font-weight:950;letter-spacing:-.09em;text-shadow:0 0 14px rgba(124,242,255,.5)}
+.brand-meta{min-width:0}
+.eyebrow{font-size:8px;letter-spacing:.22em;color:#98A5B4;font-weight:900}
+h1{font-size:24px;line-height:1.02;letter-spacing:-.08em;color:#F5F7FA;font-weight:950}
+h1 span{background:linear-gradient(100deg,#FFFFFF,#B7C2CF 45%,#7CF2FF 90%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.brand-subline{margin-top:4px;color:#788595;font:800 7px/1.2 var(--mono);letter-spacing:.19em}
+.top-chip{padding:8px 10px;border:1px solid rgba(209,220,233,.2);background:linear-gradient(145deg,rgba(255,255,255,.1),rgba(255,255,255,.035));color:#DCE4ED;font:850 8px/1 var(--mono);letter-spacing:.1em;box-shadow:inset 0 1px 0 rgba(255,255,255,.09)}
+.chip-dot{background:var(--neon);box-shadow:0 0 0 4px rgba(124,242,255,.12),0 0 13px rgba(124,242,255,.65)}
+.module-nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin:0 0 14px;padding:7px;border:1px solid rgba(218,228,239,.16);border-radius:15px;background:rgba(9,13,19,.84);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 9px 25px rgba(0,0,0,.2)}
+.module-nav::-webkit-scrollbar{display:none}
+.nav-item{flex:1 0 auto;display:flex;align-items:center;justify-content:center;gap:7px;min-height:35px;padding:7px 11px;border:1px solid transparent;border-radius:10px;background:transparent;color:#9AA7B6;font:900 8px/1 var(--mono);letter-spacing:.12em;transition:color .18s,border-color .18s,background .18s,box-shadow .18s}
+.nav-item span{color:#667383;font-size:8px}
+.nav-item.active{border-color:rgba(124,242,255,.42);background:linear-gradient(120deg,rgba(124,242,255,.13),rgba(182,163,255,.10));color:#F5FBFF;box-shadow:inset 0 0 0 1px rgba(255,255,255,.035),0 0 18px rgba(124,242,255,.07)}
+.nav-item.active span{color:var(--neon)}
+.hero{position:relative;isolation:isolate;overflow:hidden;margin:0 0 17px;padding:26px 23px 19px;border:1px solid rgba(223,232,241,.22);border-radius:25px;background:radial-gradient(ellipse at 83% 8%,rgba(124,242,255,.15),transparent 35%),radial-gradient(ellipse at 92% 100%,rgba(182,163,255,.12),transparent 32%),linear-gradient(145deg,#151B24 0%,#080C12 57%,#151C26 100%);color:#F7FAFD;box-shadow:0 23px 55px rgba(0,0,0,.34),inset 0 1px 0 rgba(255,255,255,.11)}
+.hero:before{width:230px;height:230px;right:-83px;top:-108px;border:1px solid rgba(223,236,248,.22);box-shadow:0 0 0 18px rgba(221,234,246,.025),0 0 0 43px rgba(221,234,246,.018),0 0 44px rgba(124,242,255,.11)}
+.hero:after{content:"NI";right:15px;bottom:-54px;font-size:170px;letter-spacing:-.15em;color:rgba(222,231,241,.045);text-shadow:0 0 35px rgba(124,242,255,.1)}
+.hero-kicker{padding:7px 10px;border:1px solid rgba(124,242,255,.32);background:rgba(124,242,255,.09);color:#A4F7FF;font:900 8px/1 var(--mono);letter-spacing:.16em}
+.hero-kicker i{background:var(--neon);box-shadow:0 0 11px var(--neon)}
+.hero-kicker b{color:#B9A8FF}
+.hero h2{max-width:550px;margin:18px 0 9px;font-size:clamp(30px,7vw,45px);letter-spacing:-.065em;line-height:1.02}
+.hero h2 em{background:linear-gradient(100deg,#FFFFFF 0%,#C9D4E0 47%,#7CF2FF 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{max-width:540px;color:#AAB6C5;font-size:12px;line-height:1.65}
+.hero-steps{gap:7px;margin-top:19px}
+.hero-steps span{padding:7px 9px;border:1px solid rgba(224,234,245,.14);border-radius:8px;background:rgba(255,255,255,.035);color:#D1D9E3;font:800 7px/1 var(--mono);letter-spacing:.08em}
+.hero-signal{position:relative;z-index:1;display:flex;align-items:center;gap:7px;margin-top:18px;color:#748394;font:800 7px/1 var(--mono);letter-spacing:.16em}
+.signal-line{width:28px;height:1px;background:linear-gradient(90deg,var(--neon),transparent);box-shadow:0 0 8px rgba(124,242,255,.45)}
+.signal-dot{width:4px;height:4px;border-radius:50%;background:#B7A6FF;box-shadow:0 0 8px #B7A6FF}
+.section,.panel:not(.weapon-lab):not(.dvi-shell){color:#10151D;background:linear-gradient(150deg,#F8FAFC 0%,#E9EDF2 49%,#D5DCE5 100%);border:1px solid rgba(255,255,255,.82);border-radius:21px;padding:17px;margin-bottom:14px;box-shadow:0 16px 35px rgba(0,0,0,.19),inset 0 1px 0 rgba(255,255,255,.95)}
+.section-head{align-items:center;gap:12px;margin-bottom:14px}
+.step-no{width:34px;height:34px;border-radius:11px;background:linear-gradient(145deg,#FFFFFF,#AEB9C6);color:#111820;box-shadow:inset 0 1px 0 #fff,0 4px 12px rgba(59,72,88,.13);font:950 10px/1 var(--mono)}
+.section-head h3,.panel-title h3,.panel-heading-row h3{color:#121821;font-size:16px;font-weight:950;letter-spacing:-.04em}
+.section-head p,.panel-title p{color:#687484;font-size:10px;line-height:1.5}
+#drop{min-height:130px;border:1.5px dashed #9BA8B7;border-radius:16px;background:linear-gradient(145deg,rgba(255,255,255,.86),rgba(220,227,235,.86));color:#141B25;transition:border-color .18s,box-shadow .18s,background .18s,transform .18s}
+#drop:hover,#drop.over,#drop.has{border-color:#39C9DC;background:linear-gradient(145deg,#FFFFFF,#E4F7FA);box-shadow:inset 0 0 0 1px rgba(124,242,255,.35),0 0 22px rgba(124,242,255,.12)}
+#drop b{font-size:12px;font-weight:950;letter-spacing:-.02em}
+#drop span{color:#667384;font-size:9px;line-height:1.55}
+.upload-symbol{display:grid;place-items:center;width:38px;height:38px;border:1px solid rgba(20,31,43,.12);border-radius:12px;background:linear-gradient(145deg,#161D27,#394656);color:#B8F9FF;box-shadow:0 0 17px rgba(124,242,255,.13);font-size:17px}
+.status{background:linear-gradient(145deg,#F8FAFC,#E1E7ED);border:1px solid rgba(217,226,235,.85);border-radius:14px;color:#26313F;box-shadow:0 9px 23px rgba(0,0,0,.13)}
+.status.ready{background:linear-gradient(120deg,#F6FBFC,#D8F7F8);border-color:#8BDDE6}
+.status.loading{background:#F4F6FA;border-color:#BEC8D3}
+.status.error{background:#FFF2F4;border-color:#F2B3C1;color:#7E273B}
+.status-dot{background:#3BC7D8;box-shadow:0 0 0 4px rgba(59,199,216,.13),0 0 11px rgba(59,199,216,.55)}
+.status b{color:#111923}
+.status-sub{color:#5E6A79}
+.status-tag{background:linear-gradient(110deg,#151D28,#334254);color:#BDF9FF;border:1px solid rgba(124,242,255,.25)}
+.presets{gap:10px;margin-bottom:13px}
+.pre{min-height:145px;padding:14px;border:1px solid #C6CFD9;border-radius:17px;background:linear-gradient(150deg,#FFFFFF,#E4E9EF);box-shadow:0 7px 18px rgba(32,44,59,.07),inset 0 1px 0 #fff;transition:transform .18s,border-color .18s,box-shadow .18s}
+.pre:active{transform:scale(.985)}
+.pre.sel{background:linear-gradient(145deg,#F4FFFF,#D9F8FC);border-color:#51C9D8;box-shadow:inset 0 0 0 1px rgba(65,200,216,.55),0 0 22px rgba(124,242,255,.18)}
+.pre .t{color:#131B26;font-size:12px;font-weight:950}
+.pre .d{color:#647183;font-size:9px;line-height:1.48}
+.pre .n{color:#657384;font-size:8px;letter-spacing:.1em}
+.pre-icon{width:36px;height:36px;background:linear-gradient(145deg,#171F2A,#4B596A);color:#D7FCFF;border:1px solid rgba(124,242,255,.16);border-radius:11px;font-size:17px}
+.pre.sel .pre-icon{background:linear-gradient(145deg,#101B27,#197080);color:#C7FBFF}
+.radio-mark{border-color:#9DA9B7}
+.pre.sel .radio-mark{border-color:#1AA9BA;background:#1AA9BA}
+.panel{border-radius:20px}
+.panel:not(.weapon-lab):not(.dvi-shell) .panel-pill{background:linear-gradient(110deg,#161E29,#415064);color:#DDFBFF;border:1px solid rgba(124,242,255,.2)}
+.gun-mode-picker{border:1px solid rgba(223,233,243,.19);border-radius:18px;background:radial-gradient(ellipse at 92% 0,rgba(124,242,255,.13),transparent 38%),linear-gradient(140deg,#171F29,#080C12);box-shadow:0 18px 35px rgba(0,0,0,.24)}
+.gun-mode-picker .mode-kicker{color:#8CF5FF;font:900 8px/1 var(--mono);letter-spacing:.16em}
+.gun-mode-picker .mode-title{color:#F5F8FC;font-size:17px}
+.gun-mode-picker .mode-desc{color:#A2AFBE;font-size:10px}
+.mode-option{border:1px solid rgba(218,231,243,.17);background:rgba(255,255,255,.045)}
+.mode-option b{color:#F4F7FA}
+.mode-option small{color:#9DAABA}
+.mode-option:has(input:checked){border-color:rgba(124,242,255,.65);background:rgba(124,242,255,.10);box-shadow:inset 0 0 0 1px rgba(124,242,255,.12),0 0 16px rgba(124,242,255,.08)}
+.mode-option input{accent-color:#7CF2FF}
+.weapon-lab{background:radial-gradient(ellipse at 90% 0,rgba(124,242,255,.12),transparent 33%),linear-gradient(150deg,#151B24,#0A0E14 58%,#151C27);border:1px solid rgba(220,231,243,.21);border-radius:21px;color:#EEF4FA;box-shadow:0 20px 45px rgba(0,0,0,.32),inset 0 1px 0 rgba(255,255,255,.065)}
+.weapon-lab .panel-title h3,.weapon-lab .panel-heading-row h3{color:#F5F8FC}
+.weapon-lab .panel-title p{color:#A8B4C3}
+.weapon-lab .panel-pill{background:linear-gradient(110deg,#E8EDF3,#8F9BAA);color:#101720;border:1px solid #F7FAFC}
+.weapon-target{border:1px solid rgba(224,233,242,.13);border-radius:12px;background:linear-gradient(120deg,rgba(255,255,255,.075),rgba(255,255,255,.025))}
+.weapon-target:has(input:checked){border-color:rgba(124,242,255,.38);background:linear-gradient(120deg,rgba(124,242,255,.12),rgba(255,255,255,.035));box-shadow:inset 0 0 0 1px rgba(124,242,255,.06)}
+.weapon-target input{accent-color:#7CF2FF}
+.weapon-target b{color:#F4F8FC;font-size:9px}
+.weapon-target small{color:#9BAABC;font-size:8px}
+.weapon-target-actions button,.weapon-config-actions button,.weapon-config-actions .weapon-import-label{border:1px solid rgba(223,232,242,.2);background:linear-gradient(145deg,rgba(255,255,255,.12),rgba(255,255,255,.045));color:#E8EFF6;border-radius:10px;font-size:8px}
+.weapon-summary{border-color:rgba(124,242,255,.2);background:rgba(124,242,255,.07);color:#B5C8D7}
+.weapon-preview{border-color:rgba(220,231,243,.18);background:radial-gradient(circle at 18% 10%,rgba(124,242,255,.14),transparent 42%),linear-gradient(145deg,#080C12,#171F2B)}
+.weapon-preview-head{color:#AEBBC9}
+.weapon-preview-head span:last-child{color:#8EF6FF}
+.weapon-visual{--weapon-edge:#EAFBFF;filter:drop-shadow(0 0 9px var(--weapon-glow))}
+.weapon-preview-note{color:#95A4B5}
+.weapon-look{border:1px solid rgba(230,239,248,.28);box-shadow:inset 0 1px 0 rgba(255,255,255,.24),0 8px 18px rgba(0,0,0,.2)}
+.weapon-look:focus-visible,.nav-item:focus-visible,.lab-btn:focus-visible,button:focus-visible{outline:2px solid var(--neon);outline-offset:3px}
+.weapon-status{border-color:rgba(220,232,243,.15);background:rgba(255,255,255,.045);color:#AEBCCC}
+.panel:not(.weapon-lab):not(.dvi-shell){color:#131A24}
+.panel:not(.weapon-lab):not(.dvi-shell) .panel-title h3{color:#121A25}
+.panel:not(.weapon-lab):not(.dvi-shell) .panel-title p{color:#657283}
+.panel:not(.weapon-lab):not(.dvi-shell) .cfld,
+.panel:not(.weapon-lab):not(.dvi-shell) .wfld,
+.panel:not(.weapon-lab):not(.dvi-shell) .afld{border:1px solid #CBD3DD;background:linear-gradient(145deg,#F9FBFD,#E7ECF1);border-radius:13px}
+.panel:not(.weapon-lab):not(.dvi-shell) .cfld label,
+.panel:not(.weapon-lab):not(.dvi-shell) .wfld label,
+.panel:not(.weapon-lab):not(.dvi-shell) .afld label{color:#263243}
+.panel:not(.weapon-lab):not(.dvi-shell) .dim{color:#778393}
+.panel:not(.weapon-lab):not(.dvi-shell) .crow input[type=text]{background:#FFFFFF;border-color:#BFC9D4;color:#18222F}
+.panel:not(.weapon-lab):not(.dvi-shell) .crow input[type=color]{background:#FFF;border-color:#BFC9D4}
+.panel:not(.weapon-lab):not(.dvi-shell) .wfld label b,
+.panel:not(.weapon-lab):not(.dvi-shell) .afld label b{background:linear-gradient(120deg,#111A25,#344456);color:#C5F9FF}
+.panel:not(.weapon-lab):not(.dvi-shell) input[type=range]{accent-color:#1CB7C9}
+.panel:not(.weapon-lab):not(.dvi-shell) .chk{background:linear-gradient(145deg,#FFFFFF,#E6EBF1);border-color:#C7D0DA;color:#202B39}
+.panel:not(.weapon-lab):not(.dvi-shell) .chk input{accent-color:#13B7C8}
+.panel:not(.weapon-lab):not(.dvi-shell) .chk .dim{color:#778391}
+.mini-btn{background:linear-gradient(145deg,#FFFFFF,#DEE4EA);border-color:#C0CAD5;color:#273343}
+input[type=range]{accent-color:#56DCEB}
+input[type=color]{border-radius:9px}
+input[type=text],input[type=number],input[type=file],select,textarea{accent-color:#66DCEB}
+#go{position:relative;overflow:hidden;min-height:60px;border:1px solid rgba(124,242,255,.7);border-radius:16px;padding:15px 17px 15px 20px;background:linear-gradient(110deg,#F7FAFC 0%,#C9D2DC 38%,#F7FBFF 70%,#B4C0CD 100%);color:#111820;font-size:13px;letter-spacing:.015em;box-shadow:0 0 0 1px rgba(255,255,255,.25),0 8px 0 #6F7A88,0 14px 28px rgba(0,0,0,.36),0 0 26px rgba(124,242,255,.16);transition:transform .16s,box-shadow .16s,filter .16s}
+#go:before{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(105deg,transparent 18%,rgba(255,255,255,.65) 45%,transparent 70%);transform:translateX(-120%);transition:transform .75s ease}
+#go:hover:before{transform:translateX(120%)}
+#go:active{transform:translateY(3px);box-shadow:0 0 0 1px rgba(255,255,255,.25),0 4px 0 #6F7A88,0 9px 20px rgba(0,0,0,.32)}
+#go:disabled{filter:grayscale(.7);opacity:.55;box-shadow:none}
+.go-arrow{background:#101821;color:#9CF7FF;border:1px solid rgba(124,242,255,.33)}
+.action-wrap{padding:0;margin:17px 0 15px}
+.complete-card{border:1px solid rgba(124,242,255,.28);background:radial-gradient(ellipse at 90% 0,rgba(124,242,255,.14),transparent 35%),linear-gradient(145deg,#17202C,#080D13);box-shadow:0 20px 42px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.08)}
+.complete-mark{background:linear-gradient(145deg,#F8FBFD,#AAB8C7);color:#111923}
+.complete-kicker{color:#8CF4FF}
+.complete-copy h3{color:#F7FAFC}
+.complete-copy p{color:#AFBBC9}
+.save-btn{background:linear-gradient(110deg,#F6F9FC,#B7C2CF);color:#121A24;box-shadow:0 3px 0 #687584;border:1px solid #FFFFFF}
+.save-btn.package-btn{background:linear-gradient(110deg,#C7BFFF,#8E82DB);color:#17132B;box-shadow:0 3px 0 #645AAB}
+.package-info{color:#C3CEDA}
+.package-warning{background:#FFF1F4;border-color:#E8AABA;color:#753246}
+.asset-select-wrap,.asset-learn,.asset-profile-note{background:linear-gradient(145deg,#FFFFFF,#E7ECF1);border-color:#C8D1DB;color:#263242}
+.asset-select{background:#FFF;border-color:#BFC9D4;color:#15202B}
+.asset-learn-head b{color:#14202D}
+.asset-learn-head span{color:#687586}
+.learn-tag{background:linear-gradient(110deg,#121A25,#3B4A5C);color:#A9F8FF}
+.learn-file{border-color:#AEBBC9;background:#FFFFFF}
+.learn-file b{color:#243142}
+.learn-btn{border-color:#C5CFDA;background:linear-gradient(140deg,#FFFFFF,#E5EAF0);color:#273548}
+.learn-btn.primary{background:linear-gradient(110deg,#121A25,#3A4B5F);border-color:#7CF2FF;color:#D5FBFF}
+.learn-status{background:#FBFCFD;border-color:#CED6DF;color:#586575}
+.learn-status.good{background:#E9FBFC;border-color:#86D8E0;color:#15515A}
+.learn-status.bad{background:#FFF1F3;border-color:#E8B2BE;color:#813448}
+.asset-info{background:linear-gradient(145deg,#121A25,#263444);border-color:rgba(124,242,255,.25);color:#BBC8D6}
+.footer{padding:12px 4px 0;border-top:1px solid rgba(221,231,241,.13);color:#738193;font:800 8px/1.4 var(--mono);letter-spacing:.12em}
+.footer-brand{color:#D8E0E9}
+.footer-brand span{background:#7CF2FF;box-shadow:0 0 8px rgba(124,242,255,.7);transform:none;border-radius:50%}
+
+/* DVI panel keeps the deep graphite surfaces but switches to chrome and cyan controls. */
+.dvi-shell{background:radial-gradient(ellipse at 96% 0,rgba(124,242,255,.13),transparent 36%),linear-gradient(150deg,#161E29,#080D14 60%,#151D28);border:1px solid rgba(222,234,246,.2);color:#F2F6FA;box-shadow:0 22px 48px rgba(0,0,0,.34)}
+.dvi-shell .panel-title h3{color:#F7FAFD}
+.dvi-shell .panel-title p{color:#AAB6C5}
+.dvi-shell .panel-pill{background:linear-gradient(110deg,#F3F6F9,#9EABB9,#E5EAF0);color:#141B25}
+.dvi-shell .dvi-source-note{border-color:rgba(124,242,255,.22);background:rgba(124,242,255,.055);color:#B9C7D5}
+.dvi-shell .dvi-source-note b,.dvi-shell .dvi-subtitle{color:#91F3FF}
+.dvi-shell .dvi-preview{border-color:rgba(124,242,255,.42);box-shadow:0 0 30px rgba(124,242,255,.12),inset 0 1px 0 rgba(255,255,255,.1)}
+.dvi-shell .dvi-preview-kicker{color:#9DF6FF}
+.dvi-shell .dvi-preview-title{color:#F8FCFF;text-shadow:0 0 12px rgba(124,242,255,.48),0 0 25px rgba(182,163,255,.3)}
+.dvi-shell .dvi-theme-head,.dvi-shell .dvi-speed-head{color:#D9E2EC}
+.dvi-shell .dvi-shell .cfld label{color:#DCE5ED}
+.dvi-shell .cfld,.dvi-shell .wfld,.dvi-shell .afld{background:linear-gradient(145deg,rgba(255,255,255,.08),rgba(255,255,255,.035));border-color:rgba(222,232,242,.15)}
+.dvi-shell .cfld label,.dvi-shell .wfld label,.dvi-shell .afld label{color:#DCE5ED}
+.dvi-shell .crow input[type=text],.dvi-shell .dvi-preview-custom input,.dvi-shell select{background:#090F17;border-color:#475463;color:#F1F6FA}
+.dvi-shell .crow input[type=color]{background:#111923;border-color:#637181}
+.dvi-shell .wfld label b,.dvi-shell .afld label b{background:linear-gradient(110deg,#E9F5F8,#A8F2F6);color:#101B25}
+.dvi-shell input[type=range]{accent-color:#7CF2FF}
+.dvi-shell .chk{background:rgba(255,255,255,.055);border-color:rgba(223,234,244,.16);color:#EAF0F6}
+.dvi-shell .chk input{accent-color:#7CF2FF}
+.dvi-shell .dvi-note{border-color:rgba(124,242,255,.18);background:rgba(255,255,255,.04);color:#B8C5D2}
+.dvi-shell .lab-card{border-color:rgba(223,233,243,.14);background:linear-gradient(145deg,rgba(255,255,255,.075),rgba(255,255,255,.025))}
+.dvi-shell .lab-num{background:linear-gradient(135deg,#F7FAFC,#96A5B5);color:#101720;box-shadow:0 0 15px rgba(124,242,255,.13)}
+.dvi-shell .lab-card-head b{color:#F4F8FC}
+.dvi-shell .lab-card-head small{color:#AAB6C4}
+.dvi-shell .lab-field{border-color:rgba(221,232,243,.14);background:rgba(0,0,0,.22)}
+.dvi-shell .lab-field label,.dvi-shell .lab-range label{color:#D0D9E4}
+.dvi-shell .lab-field input[type=text],.dvi-shell .lab-field select{background:#080E15;border-color:#485868;color:#F1F6FB}
+.dvi-shell .lab-btn{border-color:rgba(221,232,243,.2);background:linear-gradient(145deg,rgba(255,255,255,.12),rgba(255,255,255,.045));color:#EDF3F8}
+.dvi-shell .lab-btn.primary{border-color:#7CF2FF;background:linear-gradient(110deg,#EAF8FA,#A5EAF0,#D7D4FF);color:#101820}
+.dvi-shell .lab-status{border-color:rgba(124,242,255,.16);background:rgba(0,0,0,.28);color:#B9C7D5}
+.dvi-shell .lab-status.good{color:#B8F5E9}
+.dvi-shell .lab-status.bad{color:#FFC2CD}
+.dvi-shell .lab-table-wrap{border-color:rgba(224,234,244,.15)}
+.dvi-shell .lab-table{color:#DCE5ED}
+.dvi-shell .lab-table th{background:#1B2633;color:#9BF5FF}
+.dvi-shell .lab-table td code{color:#F0F5F9}
+.dvi-shell .lab-metric{border-color:rgba(220,231,242,.14);background:rgba(0,0,0,.22)}
+.dvi-shell .lab-metric b{color:#F2F7FB}
+.dvi-shell .lab-metric small{color:#A0ADBB}
+.dvi-shell .lab-disclaimer{color:#8D9CAD}
+
+/* Shared controls, tables and accessibility */
+input,select,textarea{max-width:100%}
+input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid rgba(53,198,216,.72);outline-offset:2px}
+button:disabled{cursor:not-allowed!important;filter:saturate(.45)}
+::selection{background:rgba(124,242,255,.35);color:#0B1017}
+@media(max-width:430px){
+ body{padding:12px 10px calc(34px + env(safe-area-inset-bottom))}
+ .topbar{margin-bottom:10px;padding-bottom:8px}.avatar-frame.brand-mark{width:46px;height:46px;border-radius:14px}.brand-mark span{border-radius:13px}
+ h1{font-size:21px}.brand-subline{font-size:6px}.top-chip{padding:7px 8px;font-size:7px}
+ .module-nav{margin-bottom:11px;padding:6px;border-radius:13px}.nav-item{min-height:34px;padding:7px 9px;font-size:7px}
+ .hero{padding:21px 17px 16px;border-radius:21px;margin-bottom:13px}.hero h2{font-size:clamp(27px,8vw,35px)}.hero p{font-size:10px}.hero-steps span{font-size:6px;padding:7px}
+ .section,.panel:not(.weapon-lab):not(.dvi-shell){padding:13px;border-radius:18px}
+ .section-head{gap:10px}.section-head h3{font-size:14px}.section-head p{font-size:9px}
+ .presets{gap:7px}.pre{min-height:136px;padding:10px;border-radius:14px;gap:9px}.pre .t{font-size:11px}.pre .d{font-size:8px}.pre .n{font-size:7px}.pre-icon{width:32px;height:32px}
+ .weapon-lab,.dvi-shell{padding:13px;border-radius:18px}
+ .weapon-target-grid,.weapon-look-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .weapon-target{padding:9px 8px}.weapon-target b{font-size:8px}.weapon-target small{font-size:7px}
+ .weapon-look{min-height:62px;padding:9px}.weapon-look b{font-size:9px}.weapon-look small{font-size:7px}
+ .lab-row{grid-template-columns:1fr}.lab-metrics{grid-template-columns:repeat(3,minmax(0,1fr))}
+ #go{min-height:56px;font-size:12px}
+}
+@media(max-width:350px){.weapon-target-grid,.weapon-look-grid{grid-template-columns:1fr}.hero-signal{font-size:6px}.nav-item{padding:7px 8px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}}
+
 </style>
 </head>
 <body>
 <div class="wrap">
-  <header class="topbar">
+  <header class="topbar" id="top">
     <div class="brand">
-      <div class="avatar-frame"><img id="brandAvatar" class="avatar" src="https://cdn.upanhlaylink.com/i/TLOGJDhT.png" alt="nminh ios" referrerpolicy="no-referrer" onerror="this.hidden=true;this.parentElement.classList.add('avatar-fallback')"></div>
-      <div class="brand-meta"><span class="eyebrow">PERSONAL MAKE FILE TOOL</span><h1>nminh <span>ios</span></h1></div>
+      <div class="avatar-frame brand-mark" aria-hidden="true"><span>NI</span></div>
+      <div class="brand-meta"><span class="eyebrow">PRECISION UNITY WORKSPACE</span><h1>NMINH<span>IOS</span></h1><div class="brand-subline">MAKE FILE · SHADER LAB</div></div>
     </div>
-    <div class="top-chip"><span class="chip-dot"></span> MAKE FILE LAB</div>
+    <div class="top-chip"><span class="chip-dot"></span> LOCAL ENGINE</div>
   </header>
+  <nav class="module-nav" aria-label="Điều hướng nhanh">
+    <button type="button" class="nav-item active" data-jump="sourceSection"><span>01</span> FILE</button>
+    <button type="button" class="nav-item" data-jump="moduleSection"><span>02</span> MODULES</button>
+    <button type="button" class="nav-item" data-jump="controls"><span>03</span> CONTROL</button>
+    <button type="button" class="nav-item" data-jump="export"><span>04</span> BUILD</button>
+  </nav>
 
   <section class="hero">
-    <div class="hero-kicker"><i></i> CUSTOM LOOK · YOUR STYLE</div>
-    <h2>Màu sắc theo<br><em>chất riêng.</em></h2>
-    <p>Chọn đúng file nguồn, chọn chức năng phù hợp và xuất kết quả. Công cụ kiểm tra cấu trúc trước khi chỉnh để hạn chế lỗi file.</p>
-    <div class="hero-steps"><span>01 / CHỌN FILE</span><span>02 / TÙY CHỈNH</span><span>03 / LƯU KẾT QUẢ</span></div>
+    <div class="hero-kicker"><i></i> SILVER NEON EDITION <b>·</b> NMINHIOS</div>
+    <h2>Chạm đúng dữ liệu.<br><em>Xuất chuẩn cấu trúc.</em></h2>
+    <p>Phân tích UnityFS ngay trong trình duyệt, mở đúng công cụ theo dữ liệu nhận diện và xác minh file sau khi chỉnh. Không gửi file lên máy chủ.</p>
+    <div class="hero-steps"><span>01 / SOURCE SCAN</span><span>02 / PRECISION EDIT</span><span>03 / VERIFY & EXPORT</span></div>
+    <div class="hero-signal"><span class="signal-line"></span><span>UNITY BUNDLE ENGINE</span><span class="signal-dot"></span><span>OFFLINE PROCESSING</span></div>
   </section>
 
-  <section class="section">
+  <section class="section" id="sourceSection">
     <div class="section-head">
       <span class="step-no">01</span>
-      <div><h3>Chọn file nguồn</h3><p>Hỗ trợ shader và AssetIndexer theo các cấu trúc mẫu đã kiểm tra.</p></div>
+      <div><h3>Chọn file nguồn</h3><p>Tự nhận diện từng cấu trúc; một file có thể mở đồng thời nhiều module nếu chứa đủ dữ liệu.</p></div>
     </div>
     <label id="drop" for="file" role="button" aria-label="Chọn file shader gốc">
       <div id="dropText"><span class="upload-symbol">↑</span><b>Chạm để chọn file gốc</b><span>shaders, optionalavatarres_commonab_shader hoặc assetindexer · iPhone / iPad</span></div>
@@ -282,16 +654,16 @@ input[type=range]{width:100%;margin:0;accent-color:#7D9F2C;cursor:pointer}
 
   <div id="info"></div>
 
-  <section class="section">
+  <section class="section" id="moduleSection">
     <div class="section-head">
       <span class="step-no">02</span>
-      <div><h3>Chọn chức năng</h3><p>Các công cụ khả dụng sẽ tự hiện theo loại file được nhận diện.</p></div>
+      <div><h3>Chọn chức năng</h3><p>Các module tương thích sẽ tự mở độc lập; một bundle có thể dùng nhiều công cụ cùng lúc.</p></div>
     </div>
     <div class="presets" id="presets">
       <label class="pre off">
         <input type="radio" name="p" value="3">
         <div class="pre-top"><span class="pre-icon">◈</span><span class="radio-mark"></span></div>
-        <div><div class="t">Shader súng</div><div class="d">Tùy chỉnh màu súng, màu viền, màu keo và độ đậm.</div></div>
+        <div><div class="t">Shader súng</div><div class="d">Định vị/X-Ray shader, màu thân, viền, decal và hiệu ứng quang phổ.</div></div>
         <div class="n">SHADERS</div>
       </label>
       <label class="pre off">
@@ -310,13 +682,56 @@ input[type=range]{width:100%;margin:0;accent-color:#7D9F2C;cursor:pointer}
 
     <div class="gun-mode-picker adv off" id="gunModePicker">
       <span class="mode-kicker">CHỌN KIỂU XUẤT</span>
-      <h3 class="mode-title">Hai bảng chỉnh màu độc lập</h3>
-      <p class="mode-desc">Bạn có thể chỉnh cả hai bảng. Chọn chế độ muốn áp dụng trước khi bấm tạo file.</p>
+      <h3 class="mode-title">Định vị/X-Ray shader súng</h3>
+      <p class="mode-desc">Chỉnh shader hiển thị, màu thân, viền và decal. Đây không phải tọa độ model, độ giật hay hướng nòng súng.</p>
       <div class="mode-options">
         <label class="mode-option"><input type="radio" name="gunMode" value="normal" checked=""><span><b>Màu thường</b><small>Dùng một màu thân và một màu viền ổn định</small></span></label>
         <label class="mode-option"><input type="radio" name="gunMode" value="rainbow"><span><b>7 màu nhấp nháy</b><small>Chu kỳ màu, tốc độ, độ sáng và nhịp sáng</small></span></label>
       </div>
     </div>
+
+    <section class="panel adv off weapon-lab" id="gunTargetBox">
+      <div class="panel-heading-row">
+        <div class="panel-title"><div><h3>WEAPON X-RAY · TARGET MATRIX</h3><p>Chọn chính xác từng shader được áp dụng. Tắt mục nào thì dữ liệu gốc của mục đó được giữ nguyên.</p></div><span class="panel-pill">CONTROL 01</span></div>
+      </div>
+      <div class="weapon-target-grid">
+        <label class="weapon-target"><input type="checkbox" id="kGunBackweapon" checked><span><b>backweapon.shader</b><small>Shader X-Ray / màu thân và viền</small></span></label>
+        <label class="weapon-target"><input type="checkbox" id="kGunBump" checked><span><b>brmobilebumpspec.shader</b><small>Shader vật liệu bump-spec / bộ màu</small></span></label>
+        <label class="weapon-target"><input type="checkbox" id="kGunDecal" checked><span><b>brmobilebumpspecdecal.shader</b><small>Decal / chỉ có _DimColor</small></span></label>
+        <label class="weapon-target"><input type="checkbox" id="kGunMalfunction" checked><span><b>malfunction.shader</b><small>Shader phụ / bộ màu và viền</small></span></label>
+      </div>
+      <label class="weapon-target" style="margin-top:8px"><input type="checkbox" id="kGunShadowAlpha" checked><span><b>toonoutline_detail_shadow · _OutLineColor alpha</b><small>Áp dụng thay đổi alpha theo mẫu đã phân tích. Tắt để giữ nguyên property gốc.</small></span></label>
+      <div class="weapon-target-actions"><button type="button" id="gunTargetsAll">Chọn tất cả</button><button type="button" id="gunTargetsNone">Bỏ chọn shader</button></div>
+      <div class="weapon-summary" id="gunTargetSummary">Đang chọn 4 shader mục tiêu và thay đổi alpha theo mẫu.</div>
+    </section>
+
+    <section class="panel adv off weapon-lab" id="gunLookBox">
+      <div class="panel-title"><div><h3>WEAPON LOOK ENGINE</h3><p>Preset thiết kế nhanh, xem trước màu/viền và lưu cấu hình riêng để dùng lại.</p></div><span class="panel-pill">CONTROL 02</span></div>
+      <div class="weapon-preview">
+        <div class="weapon-preview-head"><span>LIVE PREVIEW · MÔ PHỎNG MÀU</span><span id="gunPreviewMode">SOLID</span></div>
+        <div class="weapon-visual" id="gunVisual" aria-label="Mô phỏng màu sắc và viền shader súng">
+          <div class="weapon-shape"><i class="w-stock"></i><i class="w-body"></i><i class="w-barrel"></i><i class="w-muzzle"></i><i class="w-grip"></i><i class="w-mag"></i></div>
+        </div>
+        <div class="weapon-preview-note">Hình súng là mô phỏng giao diện để xem phối màu, không phải ảnh dựng từ model 3D trong game.</div>
+      </div>
+      <div class="weapon-look-grid">
+        <button type="button" class="weapon-look" data-gun-look="abyss" style="--look-a:#07384b;--look-b:#16b9ca"><b>ABYSS // CYAN</b><small>Xanh plasma · viền băng</small></button>
+        <button type="button" class="weapon-look" data-gun-look="crimson" style="--look-a:#51101c;--look-b:#f04f43"><b>CRIMSON // EDGE</b><small>Đỏ chiến thuật · cam nóng</small></button>
+        <button type="button" class="weapon-look" data-gun-look="toxic" style="--look-a:#18361a;--look-b:#a0d92c"><b>TOXIC // VENOM</b><small>Lục acid · tương phản cao</small></button>
+        <button type="button" class="weapon-look" data-gun-look="void" style="--look-a:#241342;--look-b:#a16cff"><b>VOID // PRISM</b><small>Tím plasma · hồng quang</small></button>
+        <button type="button" class="weapon-look" data-gun-look="gold" style="--look-a:#49300c;--look-b:#eebd55"><b>GOLD // ELITE</b><small>Vàng kim · viền champagne</small></button>
+        <button type="button" class="weapon-look" data-gun-look="spectral" style="--look-a:#b63d75;--look-b:#31b9d5"><b>SPECTRAL // 7</b><small>Quang phổ bảy màu động</small></button>
+        <button type="button" class="weapon-look" data-gun-look="ghost" style="--look-a:#31465c;--look-b:#b8d7e9"><b>GHOST // FROST</b><small>Bạc băng · ánh sáng dịu</small></button>
+        <button type="button" class="weapon-look" data-gun-look="stealth" style="--look-a:#171d2a;--look-b:#627184"><b>STEALTH // LOW</b><small>Xám thép · độ đậm thấp</small></button>
+      </div>
+      <div class="weapon-config-actions">
+        <button type="button" id="exportGunConfig">Xuất cấu hình JSON</button>
+        <label class="weapon-import-label" for="importGunConfig">Nhập cấu hình JSON</label>
+        <input type="file" id="importGunConfig" accept=".json,application/json">
+        <button type="button" id="resetGunTargets">Khôi phục mục tiêu</button>
+      </div>
+      <div class="weapon-status" id="gunConfigStatus">Preset chỉ lưu màu, thông số và danh sách shader mục tiêu; không chứa file game hoặc shader nhúng.</div>
+    </section>
 
     <section class="panel adv off mode-active" id="colBox">
       <div class="panel-heading-row">
@@ -402,7 +817,12 @@ input[type=range]{width:100%;margin:0;accent-color:#7D9F2C;cursor:pointer}
         <div class="dvi-preview-kicker">NMINHIOS · SPECTRUM ENGINE</div>
         <div class="dvi-preview-title" id="dviPreviewTitle">DVI SEVEN · RAINBOW</div>
         <div class="dvi-spectrum"></div>
-        <p class="dvi-preview-note">Xem trước phối màu trong công cụ. Hiệu ứng thật được tạo bởi shader bên trong file game.</p>
+        <p class="dvi-preview-note">Xem trước phối màu và phong cách chữ trong công cụ. Hiệu ứng thật được tạo bởi shader bên trong file game.</p>
+      </div>
+      <div class="dvi-preview-custom">
+        <label for="dviTextSample">CHỮ RIÊNG ĐỂ XEM TRƯỚC <span>Chỉ xem trước trong công cụ</span></label>
+        <input id="dviTextSample" type="text" maxlength="48" value="NMINHIOS • SEVEN SPECTRUM" autocomplete="off" spellcheck="false">
+        <p>Chữ nhập ở đây chưa được ghi vào game. Shader mẫu hiện chỉ có các tham số điều khiển màu, cỡ, xoay, tốc độ, độ mờ và phát sáng; chưa có trường nhận chuỗi ký tự tùy ý.</p>
       </div>
       <div class="dvi-theme-head">PHỐI MÀU GỢI Ý · CHẠM ĐỂ ÁP DỤNG</div>
       <div class="dvi-theme-grid">
@@ -450,6 +870,23 @@ input[type=range]{width:100%;margin:0;accent-color:#7D9F2C;cursor:pointer}
         <div class="cfld"><label for="dviTextMapping">Cách chiếu chữ <span class="dim">_TextMapping</span></label><select id="dviTextMapping"><option value="0">Chiếu trực diện</option><option value="1">Theo UV bề mặt</option></select></div>
       </div>
 
+      <div class="dvi-subtitle">03A · PHONG CÁCH CHỮ VÀ CHUYỂN ĐỘNG NHANH</div>
+      <div class="dvi-style-grid">
+        <button class="dvi-style" type="button" data-dvi-text-style="neon"><b>NEON CYAN</b><small>Xanh điện · glow mạnh</small></button>
+        <button class="dvi-style" type="button" data-dvi-text-style="chrome"><b>CHROME SILVER</b><small>Bạc lạnh · tinh gọn</small></button>
+        <button class="dvi-style" type="button" data-dvi-text-style="gold"><b>GOLD ELITE</b><small>Vàng kim · sang trọng</small></button>
+        <button class="dvi-style" type="button" data-dvi-text-style="sakura"><b>SAKURA GLITCH</b><small>Hồng tím · chuyển động xiên</small></button>
+        <button class="dvi-style" type="button" data-dvi-text-style="toxic"><b>TOXIC EDGE</b><small>Lục acid · tương phản cao</small></button>
+        <button class="dvi-style" type="button" data-dvi-text-style="stealth"><b>STEALTH</b><small>Bạc xám · ít phát sáng</small></button>
+      </div>
+      <div class="dvi-speed-head">CHẾ ĐỘ CHUYỂN ĐỘNG</div>
+      <div class="dvi-motion-grid">
+        <button class="dvi-motion" type="button" data-dvi-motion="eco"><b>LOW MOTION</b><small>Giảm nhịp sáng và tốc độ chữ</small></button>
+        <button class="dvi-motion" type="button" data-dvi-motion="balanced"><b>BALANCED</b><small>Cân bằng hiệu ứng và chuyển động</small></button>
+        <button class="dvi-motion" type="button" data-dvi-motion="intense"><b>MAX SPECTRUM</b><small>Tăng tốc và độ rực của hiệu ứng</small></button>
+      </div>
+      <p class="dvi-note">Các bộ phong cách này chỉ thay đổi những property shader đã xác minh. Chúng không thay nội dung ký tự được dựng sẵn trong shader.</p>
+
       <div class="dvi-subtitle">04 · THAM SỐ BACKWEAPON</div>
       <div class="fxrow"><label class="chk"><input type="checkbox" id="kDviBackWeapon" checked><span>Áp dụng thay đổi backweapon<span class="dim">Thay đúng _MainTex giống bản DVI tham chiếu</span></span></label></div>
       <div class="dvi-grid">
@@ -457,6 +894,89 @@ input[type=range]{width:100%;margin:0;accent-color:#7D9F2C;cursor:pointer}
         <div class="wfld"><label><span>_MainTex · W</span><b id="dviBackWVal">0.50</b></label><input type="range" id="rDviBackW" min="0" max="1" step="0.01" value="0.5"></div>
       </div>
       <p class="dvi-note">Công thức rút ra từ mẫu: thay đúng 6 shader <b>defaultavatar</b>, <b>defaultavataralphablend</b>, <b>skin</b>, <b>glass</b>, <b>cloth</b>, <b>pbr_avatar</b>, và tùy chọn chỉnh <b>backweapon._MainTex</b>. Các shader còn lại không bị đụng. Bảy màu được shader tự sinh; các bảng màu trên phối tông nền/chữ và thông số động. File đầu ra giữ nguyên kích thước object gốc bằng cách đệm phần còn thừa.</p>
+      <div class="dvi-config-tools">
+        <div class="dvi-subtitle">05 · LƯU VÀ CHIA SẺ CẤU HÌNH</div>
+        <p class="dvi-config-copy">Lưu toàn bộ phối màu, hiệu ứng, cỡ chữ, tốc độ và tùy chọn backweapon thành file JSON để dùng lại hoặc gửi cho người khác.</p>
+        <div class="dvi-config-actions">
+          <button type="button" class="dvi-config-btn primary" id="dviExportConfig">Xuất cấu hình JSON</button>
+          <button type="button" class="dvi-config-btn" id="dviImportTrigger">Nhập cấu hình JSON</button>
+          <button type="button" class="dvi-config-btn" id="dviSaveLocal">Lưu trong trình duyệt</button>
+          <button type="button" class="dvi-config-btn" id="dviLoadLocal">Khôi phục đã lưu</button>
+        </div>
+        <input id="dviImportConfig" type="file" accept=".json,application/json" hidden>
+        <div class="dvi-config-status" id="dviConfigStatus" aria-live="polite">Chưa có cấu hình được lưu.</div>
+      </div>
+
+      <div class="dvi-lab" id="dviLab">
+        <div class="dvi-lab-title"><div><b>NMINHIOS LAB · BỘ CÔNG CỤ NÂNG CAO</b><small>Phân tích cấu trúc thật, tạo nhiều bản cùng lúc và phối trộn công thức theo tỷ lệ. Đây là các thao tác trên dữ liệu bundle, không phải hiệu ứng trang trí.</small></div><span class="dvi-lab-tag">PRO WORKSPACE</span></div>
+
+        <div class="lab-card" id="vaultCard">
+          <div class="lab-card-head"><span class="lab-num">01</span><div><b>PRESET DNA MIXER · TRỘN CÔNG THỨC</b><small>Lưu nhiều bộ thông số, phối A/B theo tỷ lệ và áp dụng kết quả trực tiếp vào shader.</small></div></div>
+          <div class="lab-row">
+            <div class="lab-field"><label for="dviVaultName">Tên preset mới</label><input id="dviVaultName" type="text" maxlength="36" placeholder="VD: Void Mint Hybrid"></div>
+            <div class="lab-field"><label for="dviVaultSelect">Kho preset đã lưu</label><select id="dviVaultSelect"><option value="">Chưa có preset riêng</option></select></div>
+          </div>
+          <div class="lab-btn-row">
+            <button type="button" class="lab-btn primary" id="dviVaultSave">Lưu trạng thái hiện tại</button>
+            <button type="button" class="lab-btn" id="dviVaultLoad">Nạp preset</button>
+            <button type="button" class="lab-btn danger" id="dviVaultDelete">Xóa preset</button>
+            <button type="button" class="lab-btn" id="dviVaultExport">Xuất kho JSON</button>
+            <button type="button" class="lab-btn" id="dviVaultImportTrigger">Nhập kho JSON</button>
+          </div>
+          <input id="dviVaultImport" type="file" accept=".json,application/json" hidden>
+          <div class="lab-row">
+            <div class="lab-field"><label for="dviMixA">Nguồn A</label><select id="dviMixA"><option value="">Chọn preset A</option></select></div>
+            <div class="lab-field"><label for="dviMixB">Nguồn B</label><select id="dviMixB"><option value="">Chọn preset B</option></select></div>
+          </div>
+          <div class="lab-range"><label><span>Tỷ lệ phối A → B</span><b id="dviMixRatioLabel">50% B</b></label><input id="dviMixRatio" type="range" min="0" max="100" step="1" value="50"></div>
+          <div class="lab-btn-row"><button type="button" class="lab-btn primary" id="dviMixApply">TRỘN VÀ ÁP DỤNG</button><button type="button" class="lab-btn" id="dviMixSave">Lưu kết quả trộn thành preset mới</button></div>
+          <div class="lab-status" id="dviVaultStatus">Kho preset riêng biệt với cấu hình đơn. Màu được nội suy trong không gian tuyến tính; thông số số học được nội suy theo tỷ lệ; công tắc và chế độ chọn chuyển theo bên gần nhất.</div>
+        </div>
+
+        <div class="lab-card" id="xrayCard">
+          <div class="lab-card-head"><span class="lab-num">02</span><div><b>UNITY BUNDLE X-RAY · SOI CẤU TRÚC</b><small>Đọc danh sách object, shader, đường dẫn asset và toàn bộ property có thể giải mã trong bundle đang mở.</small></div></div>
+          <div class="lab-btn-row"><button type="button" class="lab-btn primary" id="dviXrayScan">QUÉT BUNDLE ĐANG MỞ</button><button type="button" class="lab-btn" id="dviXrayExport" disabled>Xuất báo cáo JSON</button></div>
+          <div id="dviXrayMetrics" class="lab-metrics" hidden></div>
+          <div class="lab-row">
+            <div class="lab-field"><label for="dviXrayFilter">Lọc shader/property</label><input id="dviXrayFilter" type="text" placeholder="VD: skin, _MainColor, _TextGlow"></div>
+            <div class="lab-field"><label for="dviXrayScope">Phạm vi báo cáo</label><select id="dviXrayScope"><option value="all">Tất cả shader</option><option value="properties">Có property DVI / màu / glow</option><option value="targets">Sáu shader DVI mục tiêu</option></select></div>
+          </div>
+          <div id="dviXrayTable" class="lab-table-wrap" hidden></div>
+          <div id="dviXrayStatus" class="lab-status">Chưa quét bundle. Hãy nạp file shader nhân vật tương thích trước, sau đó nhấn quét để xem dữ liệu thực tế.</div>
+          <p class="lab-disclaimer">X-Ray chỉ đọc và lập báo cáo. Nó không tự sửa property chưa được xác minh; việc ghi shader vẫn đi qua bộ kiểm tra an toàn trước khi xuất.</p>
+        </div>
+
+
+        <div class="lab-card" id="propertyCard">
+          <div class="lab-card-head"><span class="lab-num">04</span><div><b>SHADER PROPERTY LAB · TRÌNH SỬA PROPERTY THẬT</b><small>Chọn bất kỳ shader đã quét, chọn property và sửa trực tiếp giá trị gốc. Mỗi lần chỉ tác động một property, giữ nguyên các byte còn lại và xác minh lại sau khi đóng gói.</small></div></div>
+          <div class="lab-row">
+            <div class="lab-field"><label for="dviPatchShader">Shader mục tiêu</label><select id="dviPatchShader"><option value="">Hãy quét bundle trước</option></select></div>
+            <div class="lab-field"><label for="dviPatchProperty">Property cần sửa</label><select id="dviPatchProperty"><option value="">Chọn shader trước</option></select></div>
+          </div>
+          <div class="lab-status" id="dviPatchType">Chỉ cho phép property dạng Color, Vector, Float và Range. Texture bị khóa để tránh ghi sai cấu trúc tham chiếu texture.</div>
+          <div class="lab-row">
+            <div class="lab-field"><label for="dviPatchX">Giá trị X / R</label><input type="number" id="dviPatchX" step="any" value="0"></div>
+            <div class="lab-field"><label for="dviPatchY">Giá trị Y / G</label><input type="number" id="dviPatchY" step="any" value="0"></div>
+          </div>
+          <div class="lab-row">
+            <div class="lab-field"><label for="dviPatchZ">Giá trị Z / B</label><input type="number" id="dviPatchZ" step="any" value="0"></div>
+            <div class="lab-field"><label for="dviPatchW">Giá trị W / A</label><input type="number" id="dviPatchW" step="any" value="1"></div>
+          </div>
+          <div class="lab-btn-row"><button type="button" class="lab-btn" id="dviPatchReset">Khôi phục giá trị gốc</button><button type="button" class="lab-btn primary" id="dviPatchApply">SỬA PROPERTY VÀ KIỂM TRA</button><button type="button" class="lab-btn" id="dviPatchDownload" disabled>Tải file đã sửa</button></div>
+          <div class="lab-status" id="dviPatchStatus">Chưa có property được chọn. Chạy Unity Bundle X-Ray trước để nạp danh sách shader.</div>
+          <p class="lab-disclaimer">Đây là chỉnh sửa trực tiếp bốn giá trị float trong m_DefValue của SerializedProperty. Float/Range chỉ thay X và giữ Y/Z/W gốc; Color/Vector thay đủ bốn kênh. Công cụ không tự sửa texture, shader bytecode hay mã hiệu ứng.</p>
+        </div>
+
+        <div class="lab-card" id="batchCard">
+          <div class="lab-card-head"><span class="lab-num">03</span><div><b>BATCH FORGE · MAKE HÀNG LOẠT</b><small>Chọn nhiều file shader nhân vật tương thích và xử lý cùng một cấu hình DVI. File hợp lệ được đóng vào một ZIP; file lỗi được bỏ qua và ghi rõ lý do.</small></div></div>
+          <div class="lab-field"><label for="dviBatchFiles">Chọn nhiều file nguồn (tối đa 20 file / 100 MiB)</label><input id="dviBatchFiles" type="file" multiple accept="*/*"></div>
+          <div class="lab-btn-row"><button type="button" class="lab-btn primary" id="dviBatchRun">BẮT ĐẦU MAKE HÀNG LOẠT</button><button type="button" class="lab-btn" id="dviBatchClear">Xóa danh sách</button></div>
+          <div class="lab-status" id="dviBatchStatus">Mỗi file được phân tích độc lập. Chỉ file có đủ sáu shader đích, phiên bản và cấu trúc tương thích mới được xử lý.</div>
+          <div id="dviBatchList" class="lab-batch-list"></div>
+          <div class="lab-btn-row"><button type="button" class="lab-btn primary" id="dviBatchDownload" disabled>TẢI GÓI ZIP KẾT QUẢ</button></div>
+          <p class="lab-disclaimer">ZIP dùng phương thức lưu không nén để tương thích rộng. Không có dữ liệu đầu vào nào được gửi lên máy chủ; xử lý diễn ra ngay trong trình duyệt.</p>
+        </div>
+      </div>
     </section>
 
     <section class="panel adv off" id="assetBox">
@@ -488,7 +1008,7 @@ input[type=range]{width:100%;margin:0;accent-color:#7D9F2C;cursor:pointer}
     </section>
   </section>
 
-  <div class="action-wrap"><button id="go" disabled=""><span>Áp dụng tuỳ chỉnh</span><span class="go-arrow" aria-hidden="true">↗</span></button></div>
+  <div class="action-wrap" id="buildAction"><button id="go" disabled=""><span>Áp dụng tuỳ chỉnh</span><span class="go-arrow" aria-hidden="true">↗</span></button></div>
   <div id="out"></div>
   <footer class="footer"><span class="footer-brand"><span></span> nminh ios</span><span>Simple · Clean · Custom</span></footer>
 </div>
@@ -1098,6 +1618,12 @@ const COLOR_MAP = {
 /* Chỉ thay các shader đã xác nhận khác biệt trong bản mẫu; riêng alpha của
    toonoutline_detail_shadow được đặt về 0 vì đó là giá trị thay đổi thực tế đã so sánh. */
 const XRAY_SHADERS = ['backweapon', 'brmobilebumpspec', 'brmobilebumpspecdecal', 'malfunction'];
+const WEAPON_SHADER_PATHS = {
+  backweapon: 'assets/resources/shaders/brmobile/special/backweapon.shader',
+  brmobilebumpspec: 'assets/resources/shaders/brmobile/brmobilebumpspec.shader',
+  brmobilebumpspecdecal: 'assets/resources/shaders/brmobile/brmobilebumpspecdecal.shader',
+  malfunction: 'assets/resources/shaders/brmobile/special/malfunction.shader'
+};
 const isXrayShader = path => {
   const f = path.split('/').pop().replace(/\.shader$/, '');
   return XRAY_SHADERS.includes(f);
@@ -1177,7 +1703,10 @@ async function applyPreset3(orig, b, opt){
   const repl = new Map();                   // pid → body mới
   let swapped = 0, painted = 0;
 
+  const targetChoice = opt.targets || {backweapon:true,brmobilebumpspec:true,brmobilebumpspecdecal:true,malfunction:true,shadowAlpha:true};
+  const targetApplied = [], targetSkipped = [];
   for (const [key, o] of slots){
+    if (targetChoice[key] === false){ targetSkipped.push(key); continue; }
     const bodyStart = sf.dataOffset + o.off;
     const cur = cab.subarray(bodyStart, bodyStart + o.size);
 
@@ -1212,13 +1741,13 @@ async function applyPreset3(orig, b, opt){
     }
     painted += paintShader(body, opt, key + '.shader', rows);
     repl.set(o.pid, body);
+    targetApplied.push(key);
   }
 
-  /* Phần thay đổi property độc lập được phát hiện trong bản tham chiếu:
-     toonoutline_detail_shadow._OutLineColor.a: 1 → 0. Giữ nguyên RGB và object size. */
+  /* Thay đổi alpha theo mẫu được tách thành công tắc độc lập. */
   const outlineShadow = sf.objs.find(o => o.cid === 48 &&
     (nameOf.get(o.pid) || '').split('/').pop().replace(/\.shader$/, '') === 'toonoutline_detail_shadow');
-  if (outlineShadow){
+  if (outlineShadow && targetChoice.shadowAlpha !== false){
     const at = sf.dataOffset + outlineShadow.off;
     const body = cab.subarray(at, at + outlineShadow.size).slice();
     const prop = readShaderProps(body).find(p => p.name === '_OutLineColor');
@@ -1234,14 +1763,21 @@ async function applyPreset3(orig, b, opt){
     }
   }
 
+  if (!targetApplied.length && !repl.size)
+    throw new Error('Bạn đã bỏ chọn toàn bộ mục tiêu. Hãy bật ít nhất một shader hoặc tùy chọn alpha trước khi xuất.');
+  if (!targetApplied.length && targetChoice.shadowAlpha === false)
+    throw new Error('Không có shader mục tiêu nào được chọn để xử lý.');
+
   const out = rebuildShaders(orig, b, data, blockAt, sf, node, repl);
   const what = swapped
     ? `Đã thay <b>${swapped}</b> shader gốc bằng bản X-Ray và đặt màu`
     : `Đã đổi màu <b>${slots.size}</b> shader định vị`;
   return {
     out,
-    note: `${what} — ${painted} giá trị, dung lượng giữ nguyên ` +
-          `${out.length.toLocaleString('vi-VN')} byte.`,
+    note: `${what} — ${painted} giá trị. Shader đã xử lý: ${targetApplied.join(', ') || 'không có'}. ` +
+          `Shader được giữ nguyên theo lựa chọn: ${targetSkipped.join(', ') || 'không có'}. ` +
+          `${targetChoice.shadowAlpha === false ? 'Giữ nguyên toonoutline_detail_shadow._OutLineColor alpha.' : 'Đã bật xử lý alpha theo mẫu nếu object tồn tại.'} ` +
+          `Dung lượng giữ nguyên ${out.length.toLocaleString('vi-VN')} byte.`,
     cols: ['Shader','Property','Trước','Sau'], rows, html: true
   };
 }
@@ -2529,6 +3065,13 @@ function detectKind(orig,b){
         const containerByPath = new Map();
         for (const c of assetValue.m_Container||[])
           containerByPath.set(String(c.first||'').replace(/\\/g,'/'),String(c.second.asset.m_PathID));
+        const weaponTargetInfo = Object.entries(WEAPON_SHADER_PATHS).map(([key,path])=>{
+          const pid = containerByPath.get(path);
+          const obj = pid ? sf.objs.find(o=>o.cid===48 && String(o.pid)===pid) : null;
+          const minSize = XRAY_BLOB[key]?.size || Infinity;
+          return {key,path,pid,obj,ready:!!obj && obj.size>=minSize};
+        });
+        const weaponCapable = weaponTargetInfo.length===4 && weaponTargetInfo.every(x=>x.ready);
         const dviObjects = DVI_SHADER_PATHS.map(path=>{
           const pid=containerByPath.get(path);
           return pid ? sf.objs.find(o=>o.cid===48&&String(o.pid)===pid) : null;
@@ -2537,7 +3080,8 @@ function detectKind(orig,b){
         const backObject=backPID ? sf.objs.find(o=>o.cid===48&&String(o.pid)===backPID) : null;
         const dviCapable = dviObjects.length===6 && dviObjects.every(o=>o && o.size>=DVI_SHADER_BLOB.size) && !!backObject;
         if (dviCapable)
-          return {kind:'holo',build:'DVI Người 7 màu · Unity 2018',dviCapable:true,shaderTargets:6};
+          return {kind:'holo',build:'Unity 2018.4.12f1 · DVI Người 7 màu',dviCapable:true,shaderTargets:6,
+            weaponCapable,weaponTargets:weaponTargetInfo.filter(x=>x.ready).map(x=>x.key)};
       }
       if (nShader && hasHolo && !hasDecal){
         const build=BUILDS.holo.find(x=>x.shaders===nShader&&x.size===orig.length)||BUILDS.holo.find(x=>x.shaders===nShader);
@@ -2545,7 +3089,8 @@ function detectKind(orig,b){
       }
       if (nShader && hit){
         const build=BUILDS.shader.find(x=>x.shaders===nShader&&x.size===orig.length)||BUILDS.shader.find(x=>x.shaders===nShader);
-        return {kind:'shader',build:build?build.name:null};
+        return {kind:'shader',build:build?build.name:null,weaponCapable:weaponTargetInfo.length===4&&weaponTargetInfo.every(x=>x.ready),
+          weaponTargets:weaponTargetInfo.filter(x=>x.ready).map(x=>x.key)};
       }
       return {kind:null,why:assetError.message || 'Không tìm thấy cấu trúc bundle được hỗ trợ.'};
     } catch (e){
@@ -2557,9 +3102,9 @@ function detectKind(orig,b){
 /* Bật/tắt preset theo loại bundle; tự chọn preset đầu tiên còn dùng được */
 function applyKind(kind){
   const pres = [...document.querySelectorAll('.pre')];
-  const okFor = v => kind === 'shader' ? v === '3'
-                  : kind === 'holo' ? v === '4'
-                  : kind === 'assetindexer' ? v === '5'
+  const okFor = v => v === '3' ? (kind === 'shader' || !!DET?.weaponCapable)
+                  : v === '4' ? kind === 'holo'
+                  : v === '5' ? kind === 'assetindexer'
                   : false;
   let firstOk = null;
   for (const el of pres){
@@ -2593,6 +3138,8 @@ function syncPanels(){
     el.classList.toggle('sel', el.querySelector('input') === sel);
   const gunOn = v === '3';
   $('#gunModePicker').classList.toggle('off', !gunOn);
+  $('#gunTargetBox').classList.toggle('off', !gunOn);
+  $('#gunLookBox').classList.toggle('off', !gunOn);
   $('#colBox').classList.toggle('off', !gunOn);
   $('#rainbowBox').classList.toggle('off', !gunOn);
   const characterStyle = document.querySelector('input[name="characterStyle"]:checked')?.value || 'dvi';
@@ -2636,7 +3183,7 @@ async function load(file){
     return render('#info', `<div class="status error">${esc(det.why || 'File này chưa được hỗ trợ.')}<span class="status-sub">Chọn đúng file shaders, optionalavatarres_commonab_shader hoặc assetindexer tương ứng.</span></div>`);
   }
 
-  const kindName = KIND === 'shader' ? 'Shader súng' : KIND === 'holo' ? (det.dviCapable ? 'Shader nhân vật · DVI 7 màu' : 'Shader nhân vật') : 'AssetIndexer';
+  const kindName = det.weaponCapable && det.dviCapable ? 'Shader súng + Shader nhân vật · DVI 7 màu' : KIND === 'shader' ? 'Shader súng' : KIND === 'holo' ? (det.dviCapable ? 'Shader nhân vật · DVI 7 màu' : 'Shader nhân vật') : 'AssetIndexer';
   $('#dropText').innerHTML = `<b>${esc(file.name)}</b><span>Đã nhận diện · chạm để đổi file</span>`;
   render('#info', `<div class="status ready"><span class="status-dot"></span><div><b>File đã sẵn sàng</b><span class="status-sub">${kindName}${det.build ? ' · ' + esc(det.build) : ''}</span></div><span class="status-tag">OK</span></div>`);
   applyKind(KIND);
@@ -2672,18 +3219,36 @@ $('#go').onclick = async () => {
       const rainbow = gunMode === 'rainbow';
       const xray = rainbow ? baseColors[0] : grab('tXray', 'súng');
       const line = rainbow ? outlineColors[0] : grab('tLine', 'viền súng');
+      const targets = {
+        backweapon:$('#kGunBackweapon').checked,
+        brmobilebumpspec:$('#kGunBump').checked,
+        brmobilebumpspecdecal:$('#kGunDecal').checked,
+        malfunction:$('#kGunMalfunction').checked,
+        shadowAlpha:$('#kGunShadowAlpha').checked
+      };
+      if(!Object.entries(targets).some(([key,on])=>key!=='shadowAlpha' && on))
+        throw new Error('Hãy chọn ít nhất một shader mục tiêu. Chỉ bật alpha không đủ để tạo file định vị súng.');
+      const widthValue=Number($(rainbow ? '#rRainbowWidth' : '#rWidth').value);
+      const alphaValue=Number($(rainbow ? '#rRainbowAlpha' : '#rAlpha').value);
+      if(!Number.isFinite(widthValue)||widthValue<0||widthValue>20)throw new Error('Độ dày viền phải nằm trong khoảng 0–20.');
+      if(!Number.isFinite(alphaValue)||alphaValue<0||alphaValue>1)throw new Error('Độ đậm màu phải nằm trong khoảng 0–1.');
+      const baseBrightness=rainbow?Number($('#rBaseBrightness').value):1;
+      const baseSpeed=rainbow?Number($('#rBaseSpeed').value):0.1;
+      const outlineBrightness=rainbow?Number($('#rOutlineBrightness').value):1;
+      const outlineSpeed=rainbow?Number($('#rOutlineSpeed').value):0.1;
+      const pulseMin=rainbow&&$('#kRainbowPulse').checked?Number($('#rPulseMin').value):1;
+      const pulseMax=rainbow&&$('#kRainbowPulse').checked?Number($('#rPulseMax').value):1;
+      if([baseBrightness,baseSpeed,outlineBrightness,outlineSpeed,pulseMin,pulseMax].some(v=>!Number.isFinite(v)))throw new Error('Có thông số hiệu ứng không hợp lệ.');
+      if(rainbow&&(baseBrightness<1||baseBrightness>5||outlineBrightness<1||outlineBrightness>5||baseSpeed<.1||baseSpeed>20||outlineSpeed<.1||outlineSpeed>20||pulseMin<0||pulseMin>1||pulseMax<1||pulseMax>4))throw new Error('Một thông số quang phổ nằm ngoài giới hạn shader.');
+      if(rainbow&&$('#kRainbowPulse').checked&&pulseMin>pulseMax)throw new Error('Nhịp sáng tối thiểu không được lớn hơn nhịp sáng tối đa.');
       res = await applyPreset3(ORIG, BUN, {
         mode: gunMode,
+        targets,
         xray, line, dim,
-        width: parseFloat($(rainbow ? '#rRainbowWidth' : '#rWidth').value),
-        alpha: parseFloat($(rainbow ? '#rRainbowAlpha' : '#rAlpha').value),
+        width: widthValue,
+        alpha: alphaValue,
         baseColors, outlineColors,
-        baseBrightness: rainbow ? parseFloat($('#rBaseBrightness').value) : 1,
-        baseSpeed: rainbow ? parseFloat($('#rBaseSpeed').value) : 0.1,
-        outlineBrightness: rainbow ? parseFloat($('#rOutlineBrightness').value) : 1,
-        outlineSpeed: rainbow ? parseFloat($('#rOutlineSpeed').value) : 0.1,
-        pulseMin: rainbow && $('#kRainbowPulse').checked ? parseFloat($('#rPulseMin').value) : 1,
-        pulseMax: rainbow && $('#kRainbowPulse').checked ? parseFloat($('#rPulseMax').value) : 1
+        baseBrightness,baseSpeed,outlineBrightness,outlineSpeed,pulseMin,pulseMax
       });
     }
     else if (p === '4') {
@@ -2759,6 +3324,7 @@ $('#go').onclick = async () => {
         ${patchPackage ? '<button id="dl3105" class="save-btn package-btn" type="button"><span>Gói .3105</span><span aria-hidden="true">↗</span></button>' : ''}
       </div>
       ${assetOutput ? `<div class="package-info"><b>${esc($('#assetProfile').value==='learned'?(LEARNED_ASSET_RULE?.label||'Công thức tự học'):ASSET_PROFILES[$('#assetProfile').value].label)}</b><br>${esc(res.note)}</div>` : ''}
+      ${p==='3' ? `<div class="package-info"><b>WEAPON X-RAY · BÁO CÁO THAY ĐỔI</b><br>${res.note}<div style="margin-top:9px;overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:9px"><thead><tr>${res.cols.map(c=>`<th style="padding:6px 4px;text-align:left;border-bottom:1px solid rgba(255,255,255,.14)">${esc(c)}</th>`).join('')}</tr></thead><tbody>${res.rows.map(row=>`<tr>${row.map(cell=>`<td style="padding:6px 4px;border-bottom:1px solid rgba(255,255,255,.07);vertical-align:top">${String(cell)}</td>`).join('')}</tr>`).join('')}</tbody></table></div></div>` : ''}
       ${patchPackage ? `<div class="package-info"><b>${esc(packageMeta.name)}</b> · Tác giả: <b>${esc(packageMeta.author)}</b><br>Application · <b>com.dts.freefireth</b><br>Đóng gói theo định dạng Patch 3105; đường dẫn đích được lưu bên trong gói.</div>` : ''}
       ${packageError ? `<div class="package-warning">Không tạo được gói .3105: ${esc(packageError.message || 'Trình duyệt không hỗ trợ mã hóa cần thiết')}. File shader thường vẫn có thể lưu.</div>` : ''}
     </div>`);
@@ -2796,7 +3362,7 @@ for (const el of document.querySelectorAll('.pre')){
   el.classList.add('off');
   el.querySelector('input').checked = false;
 }
-for (const id of ['gunModePicker', 'colBox', 'rainbowBox', 'characterModePicker', 'holoBox', 'dviBox', 'assetBox']) $('#' + id).classList.add('off');
+for (const id of ['gunModePicker', 'gunTargetBox', 'gunLookBox', 'colBox', 'rainbowBox', 'characterModePicker', 'holoBox', 'dviBox', 'assetBox']) $('#' + id).classList.add('off');
 $('#go').disabled = true;
 
 /* bộ chọn màu: đồng bộ hai chiều giữa ô màu và ô mã hex */
@@ -2825,6 +3391,90 @@ function refreshRainbowPreview(){
   $('#rainbowPreview').style.background = `linear-gradient(90deg, ${colors.join(', ')})`;
 }
 
+/* Preset màu súng được ánh xạ vào property có thật trong shader X-Ray nhúng. */
+const GUN_LOOKS = {
+  abyss:{mode:'normal',body:'#00D9F5',edge:'#C9FBFF',dim:'#082D43',width:3,alpha:.96,baseB:2.7,baseS:.2,edgeB:3.3,edgeS:.2,pmin:.78,pmax:1.28,pulse:false},
+  crimson:{mode:'normal',body:'#E32636',edge:'#FFB15C',dim:'#3C1018',width:5,alpha:1,baseB:3.2,baseS:.3,edgeB:3.8,edgeS:.3,pmin:.75,pmax:1.45,pulse:false},
+  toxic:{mode:'normal',body:'#8DFF00',edge:'#E5FF9A',dim:'#1C330B',width:4.5,alpha:1,baseB:3.4,baseS:.3,edgeB:3.8,edgeS:.3,pmin:.65,pmax:1.6,pulse:true},
+  void:{mode:'normal',body:'#874BFF',edge:'#F1B6FF',dim:'#220E3D',width:4,alpha:.96,baseB:3.8,baseS:.35,edgeB:4.4,edgeS:.4,pmin:.45,pmax:1.85,pulse:true},
+  gold:{mode:'normal',body:'#D69A32',edge:'#FFF0B4',dim:'#3E2B0A',width:3,alpha:1,baseB:2.8,baseS:.15,edgeB:3.2,edgeS:.15,pmin:.8,pmax:1.3,pulse:false},
+  ghost:{mode:'normal',body:'#A9D7EB',edge:'#F4FCFF',dim:'#263C51',width:2.5,alpha:.78,baseB:1.7,baseS:.1,edgeB:2.1,edgeS:.1,pmin:.88,pmax:1.12,pulse:false},
+  stealth:{mode:'normal',body:'#657386',edge:'#B4C2D0',dim:'#151B23',width:1.5,alpha:.58,baseB:1.2,baseS:.1,edgeB:1.4,edgeS:.1,pmin:.9,pmax:1.08,pulse:false},
+  spectral:{mode:'rainbow',palette:['#FF344F','#FF9B37','#F5E85E','#5EEA9A','#43C9F5','#657DFF','#D16BFF'],dim:'#111827',width:4,alpha:1,baseB:3.2,baseS:7.2,edgeB:3.8,edgeS:5.8,pmin:.55,pmax:1.8,pulse:true}
+};
+function setGunColor(cId,tId,value){const c=$('#'+cId),t=$('#'+tId);if(!c||!t)return;c.value=value.toLowerCase();t.value=value.toUpperCase();t.classList.remove('bad');}
+function setGunRange(id,value){const el=$('#'+id);if(el)el.value=String(value);}
+function applyGunLook(key){
+  const preset=GUN_LOOKS[key];if(!preset)return;
+  const mode=document.querySelector(`input[name="gunMode"][value="${preset.mode}"]`);if(mode)mode.checked=true;
+  setGunColor('cDim','tDim',preset.dim);setGunColor('cRainbowDim','tRainbowDim',preset.dim);
+  setGunRange('rWidth',preset.width);setGunRange('rRainbowWidth',preset.width);
+  setGunRange('rAlpha',preset.alpha);setGunRange('rRainbowAlpha',preset.alpha);
+  setGunRange('rBaseBrightness',preset.baseB);setGunRange('rBaseSpeed',preset.baseS);
+  setGunRange('rOutlineBrightness',preset.edgeB);setGunRange('rOutlineSpeed',preset.edgeS);
+  setGunRange('rPulseMin',preset.pmin);setGunRange('rPulseMax',preset.pmax);
+  $('#kRainbowPulse').checked=!!preset.pulse;$('#rPulseMin').disabled=!preset.pulse;$('#rPulseMax').disabled=!preset.pulse;
+  if(preset.mode==='rainbow'){
+    preset.palette.forEach((v,i)=>setGunColor('cRb'+(i+1),'tRb'+(i+1),v));
+    setGunColor('cXray','tXray',preset.palette[0]);setGunColor('cLine','tLine',preset.palette[4]);
+  }else{
+    setGunColor('cXray','tXray',preset.body);setGunColor('cLine','tLine',preset.edge);
+  }
+  syncGunMode();refreshRainbowPreview();updateRangeLabels();refreshGunPreview();
+  const label=key.toUpperCase();$('#gunConfigStatus').textContent=`Đã áp dụng preset ${label}. Các giá trị sẽ được ghi vào property shader được hỗ trợ khi bạn xuất file.`;
+}
+function refreshGunPreview(){
+  const visual=$('#gunVisual');if(!visual)return;
+  const mode=document.querySelector('input[name="gunMode"]:checked')?.value||'normal';
+  const palette=mode==='rainbow'?Array.from({length:7},(_,i)=>$('#cRb'+(i+1)).value):[$('#cXray').value||'#111111'];
+  const edge=mode==='rainbow'?palette[4]:($('#cLine').value||'#FFFFFF');
+  const body=palette[0]||'#111111';
+  visual.style.setProperty('--weapon-palette',`linear-gradient(90deg,${palette.join(',')})`);
+  visual.style.setProperty('--weapon-edge',edge);
+  visual.style.setProperty('--weapon-glow',`${body}99`);
+  visual.classList.toggle('pulse-on',mode==='rainbow'&&$('#kRainbowPulse').checked);
+  $('#gunPreviewMode').textContent=mode==='rainbow'?'SPECTRUM · 7 COLOR':'SOLID · HIGH CONTRAST';
+}
+function gunTargetState(){return {backweapon:$('#kGunBackweapon').checked,brmobilebumpspec:$('#kGunBump').checked,brmobilebumpspecdecal:$('#kGunDecal').checked,malfunction:$('#kGunMalfunction').checked,shadowAlpha:$('#kGunShadowAlpha').checked};}
+function refreshGunTargetSummary(){
+  const t=gunTargetState(),names=[['backweapon','backweapon'],['brmobilebumpspec','bump-spec'],['brmobilebumpspecdecal','decal'],['malfunction','malfunction']];
+  const enabled=names.filter(([k])=>t[k]).map(([,n])=>n);
+  const shadow=t.shadowAlpha?'bật alpha theo mẫu':'giữ nguyên alpha';
+  $('#gunTargetSummary').textContent=`Đang chọn ${enabled.length}/4 shader: ${enabled.join(' · ')||'không có'}. Tùy chọn riêng: ${shadow}.`;
+}
+function collectGunConfig(){
+  const colorIds=['cXray','cLine','cDim','cRainbowDim','cRb1','cRb2','cRb3','cRb4','cRb5','cRb6','cRb7'];
+  const rangeIds=['rWidth','rAlpha','rRainbowWidth','rRainbowAlpha','rBaseBrightness','rBaseSpeed','rOutlineBrightness','rOutlineSpeed','rPulseMin','rPulseMax'];
+  return {schema:'nminhios-weapon-xray-config',version:1,mode:document.querySelector('input[name="gunMode"]:checked')?.value||'normal',colors:Object.fromEntries(colorIds.map(id=>[id,$('#'+id).value.toUpperCase()])),ranges:Object.fromEntries(rangeIds.map(id=>[id,Number($('#'+id).value)])),pulse:$('#kRainbowPulse').checked,targets:gunTargetState()};
+}
+function applyGunConfig(config){
+  if(!config||config.schema!=='nminhios-weapon-xray-config'||config.version!==1)throw new Error('File JSON không phải cấu hình Weapon X-Ray được hỗ trợ.');
+  if(!['normal','rainbow'].includes(config.mode))throw new Error('Chế độ màu trong JSON không hợp lệ.');
+  const colorIds=['cXray','cLine','cDim','cRainbowDim','cRb1','cRb2','cRb3','cRb4','cRb5','cRb6','cRb7'];
+  for(const id of colorIds){const val=config.colors?.[id];if(typeof val!=='string'||!/^#[0-9a-f]{6}$/i.test(val))throw new Error(`Màu ${id} trong JSON không hợp lệ.`);}
+  const bounds={rWidth:[0,20],rAlpha:[0,1],rRainbowWidth:[0,20],rRainbowAlpha:[0,1],rBaseBrightness:[1,5],rBaseSpeed:[.1,20],rOutlineBrightness:[1,5],rOutlineSpeed:[.1,20],rPulseMin:[0,1],rPulseMax:[1,4]};
+  for(const [id,[min,max]] of Object.entries(bounds)){const val=Number(config.ranges?.[id]);if(!Number.isFinite(val)||val<min||val>max)throw new Error(`Giá trị ${id} trong JSON vượt giới hạn.`);}
+  const t=config.targets||{};for(const key of ['backweapon','brmobilebumpspec','brmobilebumpspecdecal','malfunction','shadowAlpha'])if(typeof t[key]!=='boolean')throw new Error(`Thiếu lựa chọn mục tiêu ${key} trong JSON.`);
+  if(!['backweapon','brmobilebumpspec','brmobilebumpspecdecal','malfunction'].some(k=>t[k]))throw new Error('Cấu hình không chọn shader mục tiêu nào.');
+  document.querySelector(`input[name="gunMode"][value="${config.mode}"]`).checked=true;
+  for(const [c,tId] of COLOR_PAIRS.filter(([c])=>colorIds.includes(c))){const val=config.colors[c];setGunColor(c,tId,val);}
+  for(const [id,val] of Object.entries(config.ranges))if(bounds[id])setGunRange(id,val);
+  $('#kRainbowPulse').checked=!!config.pulse;$('#rPulseMin').disabled=!config.pulse;$('#rPulseMax').disabled=!config.pulse;
+  $('#kGunBackweapon').checked=t.backweapon;$('#kGunBump').checked=t.brmobilebumpspec;$('#kGunDecal').checked=t.brmobilebumpspecdecal;$('#kGunMalfunction').checked=t.malfunction;$('#kGunShadowAlpha').checked=t.shadowAlpha;
+  syncGunMode();refreshRainbowPreview();updateRangeLabels();refreshGunPreview();refreshGunTargetSummary();
+}
+for(const id of ['kGunBackweapon','kGunBump','kGunDecal','kGunMalfunction','kGunShadowAlpha'])$('#'+id).addEventListener('change',refreshGunTargetSummary);
+$('#gunTargetsAll').addEventListener('click',()=>{for(const id of ['kGunBackweapon','kGunBump','kGunDecal','kGunMalfunction','kGunShadowAlpha'])$('#'+id).checked=true;refreshGunTargetSummary();});
+$('#gunTargetsNone').addEventListener('click',()=>{for(const id of ['kGunBackweapon','kGunBump','kGunDecal','kGunMalfunction'])$('#'+id).checked=false;refreshGunTargetSummary();});
+$('#resetGunTargets').addEventListener('click',()=>{for(const id of ['kGunBackweapon','kGunBump','kGunDecal','kGunMalfunction','kGunShadowAlpha'])$('#'+id).checked=true;refreshGunTargetSummary();$('#gunConfigStatus').textContent='Đã khôi phục lựa chọn mặc định: bốn shader và alpha theo mẫu.';});
+document.querySelectorAll('[data-gun-look]').forEach(btn=>btn.addEventListener('click',()=>applyGunLook(btn.dataset.gunLook)));
+for(const id of ['rWidth','rAlpha','rRainbowWidth','rRainbowAlpha','rBaseBrightness','rBaseSpeed','rOutlineBrightness','rOutlineSpeed','rPulseMin','rPulseMax','kRainbowPulse'])$('#'+id)?.addEventListener('input',refreshGunPreview);
+for(const [c,t] of COLOR_PAIRS.filter(([c])=>['cXray','cLine','cDim','cRainbowDim','cRb1','cRb2','cRb3','cRb4','cRb5','cRb6','cRb7'].includes(c))){$('#'+c)?.addEventListener('input',refreshGunPreview);$('#'+t)?.addEventListener('input',refreshGunPreview);}
+document.querySelectorAll('input[name="gunMode"]').forEach(el=>el.addEventListener('change',refreshGunPreview));
+$('#exportGunConfig').addEventListener('click',()=>{const data=collectGunConfig();const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='nminhios-weapon-xray-config.json';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),4000);$('#gunConfigStatus').textContent='Đã xuất cấu hình JSON. File này chỉ chứa thông số và lựa chọn shader, không chứa game bundle.';});
+$('#importGunConfig').addEventListener('change',async ev=>{const f=ev.target.files?.[0];if(!f)return;try{const cfg=JSON.parse(await f.text());applyGunConfig(cfg);$('#gunConfigStatus').textContent=`Đã nhập thành công cấu hình ${f.name}.`; }catch(e){$('#gunConfigStatus').textContent=`Không nhập được cấu hình: ${e.message||e}`;}finally{ev.target.value='';}});
+refreshGunTargetSummary();refreshGunPreview();
+
 const DVI_THEMES = {
   aurora:{main:'#062A31',text:'#8FFFF0',speed:3.8,spread:26,outline:.11,pulseAmount:.32,pulseSpeed:2.2,pulseMin:.55,pulseMax:1.65,textOpacity:.96,textGlow:2.5,textSpeedX:.17,textSpeedY:.04},
   cyber:{main:'#1A082D',text:'#FF82E9',speed:6.2,spread:34,outline:.16,pulseAmount:.48,pulseSpeed:3.4,pulseMin:.45,pulseMax:1.8,textOpacity:.94,textGlow:3.6,textSpeedX:.24,textSpeedY:.07},
@@ -2848,10 +3498,149 @@ function refreshDviPreview(){
   if(!/^#[0-9a-f]{6}$/i.test(main)||!/^#[0-9a-f]{6}$/i.test(text))return;
   const box=$('#dviPreview'),title=$('#dviPreviewTitle');if(!box||!title)return;
   box.style.background=`radial-gradient(ellipse at 15% 15%,${main}CC,transparent 48%),radial-gradient(ellipse at 85% 80%,${text}33,transparent 42%),linear-gradient(135deg,#08131f,${main}) padding-box,conic-gradient(from 0deg,#50f4d2,#55a8ff,#b26dff,#ff70bc,#ffca70,#50f4d2) border-box`;
+  const sample=$('#dviTextSample');
+  title.textContent=(sample?.value||'').trim()||'DVI SEVEN · RAINBOW';
   title.style.color=text;
   const glow=Math.max(0,Math.min(5,Number($('#rDviTextGlow')?.value||1.5)));
-  title.style.textShadow=`0 0 ${Math.max(4,glow*7)}px ${text},0 0 ${Math.max(9,glow*15)}px ${text}88`;
+  const opacity=$('#kDviText')?.checked===false?0:Math.max(0,Math.min(1,Number($('#rDviTextOpacity')?.value||0.85)));
+  const stretch=Math.max(.2,Math.min(4,Number($('#rDviTextStretch')?.value||1)));
+  const rotation=Math.max(0,Math.min(360,Number($('#rDviRotation')?.value||0)));
+  const rawSize=Math.max(5,Math.min(300,Number($('#rDviTextSize')?.value||55)));
+  title.style.opacity=String(opacity);
+  title.style.fontSize=`${Math.max(14,Math.min(32,32-(rawSize-5)*.065))}px`;
+  title.style.transform=`rotate(${rotation}deg) scaleX(${stretch})`;
+  title.style.textShadow=`0 0 ${Math.max(1,glow*7)}px ${text},0 0 ${Math.max(2,glow*15)}px ${text}88`;
 }
+
+const DVI_TEXT_STYLES = {
+  neon:{color:'#71FFF1',size:48,stretch:1.18,line:18,rotation:0,sx:.28,sy:.05,opacity:.98,glow:4.8,flip:false,mapping:'0'},
+  chrome:{color:'#DCE7FF',size:62,stretch:1.02,line:22,rotation:0,sx:.07,sy:.015,opacity:.9,glow:1.4,flip:false,mapping:'0'},
+  gold:{color:'#FFD47A',size:54,stretch:1.16,line:20,rotation:0,sx:.12,sy:.02,opacity:.96,glow:3.2,flip:false,mapping:'0'},
+  sakura:{color:'#FF78D6',size:50,stretch:1.42,line:18,rotation:18,sx:.42,sy:.16,opacity:.95,glow:4.4,flip:false,mapping:'1'},
+  toxic:{color:'#C6FF4D',size:52,stretch:1.28,line:19,rotation:350,sx:.32,sy:-.08,opacity:.95,glow:3.8,flip:false,mapping:'0'},
+  stealth:{color:'#A6B2C2',size:66,stretch:.92,line:24,rotation:0,sx:.025,sy:0,opacity:.42,glow:.3,flip:false,mapping:'0'}
+};
+const DVI_MOTION_PRESETS = {
+  eco:{speed:1.4,spread:18,outline:.055,pulseAmount:.06,pulseSpeed:.8,pulseMin:.85,pulseMax:1.12,sx:.035,sy:.008,glow:1.1},
+  balanced:{speed:3,spread:15,outline:.08,pulseAmount:.25,pulseSpeed:2,pulseMin:.5,pulseMax:1.5,sx:.15,sy:.03,glow:1.5},
+  intense:{speed:8,spread:40,outline:.22,pulseAmount:.9,pulseSpeed:5.5,pulseMin:.35,pulseMax:1.95,sx:.55,sy:.2,glow:5}
+};
+function applyDviTextStyle(key){
+  const s=DVI_TEXT_STYLES[key];if(!s)return;
+  setDviControl('cDviText',s.color.toLowerCase());setDviControl('tDviText',s.color);
+  const values={rDviTextSize:s.size,rDviTextStretch:s.stretch,rDviTextLine:s.line,rDviRotation:s.rotation,
+    rDviTextSpeedX:s.sx,rDviTextSpeedY:s.sy,rDviTextOpacity:s.opacity,rDviTextGlow:s.glow};
+  Object.entries(values).forEach(([id,v])=>setDviControl(id,v));
+  $('#kDviText').checked=true;$('#kDviTextFlip').checked=s.flip;$('#dviTextMapping').value=s.mapping;
+  updateDviRangeLabels();
+  setDviConfigStatus(`Đã áp dụng phong cách chữ ${key.toUpperCase()}. Đây là preset tham số hiển thị, không thay chuỗi ký tự trong shader.`);
+}
+function applyDviMotionPreset(key){
+  const s=DVI_MOTION_PRESETS[key];if(!s)return;
+  const values={rDviSpeed:s.speed,rDviSpread:s.spread,rDviOutline:s.outline,rDviPulseAmount:s.pulseAmount,
+    rDviPulseSpeed:s.pulseSpeed,rDviPulseMin:s.pulseMin,rDviPulseMax:s.pulseMax,rDviTextSpeedX:s.sx,
+    rDviTextSpeedY:s.sy,rDviTextGlow:s.glow};
+  Object.entries(values).forEach(([id,v])=>setDviControl(id,v));
+  $('#kDviPulse').checked=key!=='eco'||s.pulseAmount>0;
+  updateDviRangeLabels();
+  setDviConfigStatus(key==='eco'?'Đã áp dụng LOW MOTION: giảm tốc độ chuyển động và nhịp sáng.':key==='intense'?'Đã áp dụng MAX SPECTRUM: tăng tốc và cường độ hiệu ứng.':'Đã áp dụng BALANCED.');
+}
+const DVI_CONFIG_IDS = [
+  'cDviMain','cDviText','rDviMainA','rDviOutline','rDviSpeed','rDviSpread',
+  'rDviPulseAmount','rDviPulseSpeed','rDviPulseMin','rDviPulseMax','kDviPulse',
+  'kDviText','rDviTextSize','rDviTextStretch','rDviTextLine','rDviRotation',
+  'rDviTextSpeedX','rDviTextSpeedY','rDviTextOpacity','rDviTextGlow',
+  'kDviTextFlip','dviTextMapping','kDviBackWeapon','rDviBackZ','rDviBackW',
+  'dviTextSample'
+];
+const DVI_COLOR_TEXT_PAIRS={cDviMain:'tDviMain',cDviText:'tDviText'};
+function captureDviConfig(){
+  const settings={};
+  for(const id of DVI_CONFIG_IDS){
+    const el=$('#'+id);if(!el)continue;
+    settings[id]=el.type==='checkbox'?el.checked:el.value;
+  }
+  return {format:'nminhios-dvi-config',version:1,createdAt:new Date().toISOString(),settings};
+}
+function applyDviConfig(data){
+  if(!data||data.format!=='nminhios-dvi-config'||data.version!==1||!data.settings||typeof data.settings!=='object'||Array.isArray(data.settings))
+    throw new Error('File cấu hình không đúng định dạng NMINHIOS DVI v1.');
+  let applied=0;
+  for(const id of DVI_CONFIG_IDS){
+    if(!Object.prototype.hasOwnProperty.call(data.settings,id))continue;
+    const el=$('#'+id);if(!el)continue;
+    const value=data.settings[id];
+    if(el.type==='checkbox'){
+      if(typeof value!=='boolean')continue;
+      el.checked=value;applied++;continue;
+    }
+    if(el.type==='color'){
+      if(typeof value!=='string'||!/^#[0-9a-f]{6}$/i.test(value))continue;
+      el.value=value.toLowerCase();
+      const pair=DVI_COLOR_TEXT_PAIRS[id];if(pair)$('#'+pair).value=value.toUpperCase();
+      applied++;continue;
+    }
+    if(el.type==='range'){
+      const n=Number(value);if(!Number.isFinite(n))continue;
+      const min=Number(el.min),max=Number(el.max);
+      el.value=String(Math.min(max,Math.max(min,n)));applied++;continue;
+    }
+    if(el.tagName==='SELECT'){
+      const exists=Array.from(el.options).some(o=>o.value===String(value));
+      if(exists){el.value=String(value);applied++;}continue;
+    }
+    if(el.type==='text'){
+      if(typeof value!=='string')continue;
+      el.value=value.replace(/[\u0000-\u001F\u007F]/g,'').slice(0,48);applied++;
+    }
+  }
+  updateDviRangeLabels();
+  refreshDviPreview();
+  if(!applied)throw new Error('Không tìm thấy thông số hợp lệ trong cấu hình.');
+  return applied;
+}
+function setDviConfigStatus(message,isError=false){
+  const el=$('#dviConfigStatus');if(!el)return;
+  el.textContent=message;
+  el.style.color=isError?'#FFB8A8':'#B6C6D8';
+}
+function exportDviConfig(){
+  const data=captureDviConfig();
+  const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+  const url=URL.createObjectURL(blob),a=document.createElement('a');
+  a.href=url;a.download=`nminhios-dvi-preset-${new Date().toISOString().slice(0,10)}.json`;
+  document.body.appendChild(a);a.click();a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),1500);
+  setDviConfigStatus('Đã tạo file JSON cấu hình. File JSON chỉ lưu thông số chỉnh, không chứa shader hoặc file game.');
+}
+for(const el of document.querySelectorAll('[data-dvi-text-style]'))el.addEventListener('click',()=>applyDviTextStyle(el.dataset.dviTextStyle));
+$('#kDviText')?.addEventListener('change',refreshDviPreview);
+for(const el of document.querySelectorAll('[data-dvi-motion]'))el.addEventListener('click',()=>applyDviMotionPreset(el.dataset.dviMotion));
+$('#dviTextSample')?.addEventListener('input',refreshDviPreview);
+$('#dviExportConfig')?.addEventListener('click',exportDviConfig);
+$('#dviImportTrigger')?.addEventListener('click',()=>$('#dviImportConfig')?.click());
+$('#dviImportConfig')?.addEventListener('change',async e=>{
+  const file=e.target.files&&e.target.files[0];if(!file)return;
+  try{
+    if(file.size>128*1024)throw new Error('File cấu hình lớn bất thường (tối đa 128 KB).');
+    const parsed=JSON.parse(await file.text());
+    const count=applyDviConfig(parsed);
+    setDviConfigStatus(`Đã nhập ${count} thông số từ ${file.name}.`);
+  }catch(err){setDviConfigStatus(`Không thể nhập cấu hình: ${err.message||err}`,true);}
+  finally{e.target.value='';}
+});
+$('#dviSaveLocal')?.addEventListener('click',()=>{
+  try{localStorage.setItem('nminhios.dvi.config.v1',JSON.stringify(captureDviConfig()));setDviConfigStatus('Đã lưu cấu hình trong bộ nhớ trình duyệt trên thiết bị này.');}
+  catch(err){setDviConfigStatus('Trình duyệt không cho phép lưu cục bộ: '+(err.message||err),true);}
+});
+$('#dviLoadLocal')?.addEventListener('click',()=>{
+  try{
+    const saved=localStorage.getItem('nminhios.dvi.config.v1');
+    if(!saved)throw new Error('Chưa có cấu hình được lưu trên thiết bị này.');
+    const count=applyDviConfig(JSON.parse(saved));setDviConfigStatus(`Đã khôi phục ${count} thông số đã lưu.`);
+  }catch(err){setDviConfigStatus('Không thể khôi phục: '+(err.message||err),true);}
+});
+
 function updateDviRangeLabels(){
   const pairs=[['rDviMainA','dviMainAVal',2],['rDviOutline','dviOutlineVal',2],['rDviSpeed','dviSpeedVal',1],['rDviSpread','dviSpreadVal',1],['rDviPulseAmount','dviPulseAmountVal',2],['rDviPulseSpeed','dviPulseSpeedVal',1],['rDviPulseMin','dviPulseMinVal',2],['rDviPulseMax','dviPulseMaxVal',2],['rDviTextSize','dviTextSizeVal',0],['rDviTextStretch','dviTextStretchVal',2],['rDviTextLine','dviTextLineVal',0],['rDviRotation','dviRotationVal',0],['rDviTextSpeedX','dviTextSpeedXVal',2],['rDviTextSpeedY','dviTextSpeedYVal',2],['rDviTextOpacity','dviTextOpacityVal',2],['rDviTextGlow','dviTextGlowVal',1],['rDviBackZ','dviBackZVal',2],['rDviBackW','dviBackWVal',2]];
   for(const [id,label,digits] of pairs){const input=$('#'+id),out=$('#'+label);if(input&&out)out.textContent=(+input.value).toFixed(digits)+(id==='rDviRotation'?'°':'');}
@@ -2913,7 +3702,7 @@ $('#resetRainbow').addEventListener('click', () => {
   $('#rOutlineBrightness').value='2.5'; $('#rOutlineSpeed').value='5';
   $('#rPulseMin').value='0.8'; $('#rPulseMax').value='2'; $('#kRainbowPulse').checked=true;
   $('#rPulseMin').disabled=false; $('#rPulseMax').disabled=false;
-  refreshRainbowPreview(); updateRangeLabels();
+  refreshRainbowPreview(); updateRangeLabels(); refreshGunPreview();
 });
 const ASSET_PROFILE_HELP = {
   aimlock:'Aimlock V1: công thức được học từ cặp gốc/đã chỉnh; chỉ ghi đúng các thành phần position, rotation, scale, name và parent thực sự thay đổi.',
@@ -2999,6 +3788,246 @@ $('#assetProfile').addEventListener('change', () => { const v=$('#assetProfile')
 $('#assetProfileNote').textContent = $('#assetProfile').value==='learned' ? 'Đang dùng công thức tự học. Bone được nhận diện bằng tên + hash; chỉ các trường đã học mới được ghi.' : (ASSET_PROFILE_HELP[$('#assetProfile').value] || 'Công thức tự học sẽ xuất hiện sau khi phân tích thành công một cặp file.');
 updateRangeLabels(); updateDviRangeLabels(); refreshRainbowPreview(); syncGunMode();
 
+
+/* ═══════════ NMINHIOS LAB: PRESET VAULT + DNA MIXER ═══════════ */
+const DVI_VAULT_KEY='nminhios.dvi.vault.v1';
+let DVI_VAULT=[];
+let DVI_VAULT_SESSION_ONLY=false;
+let DVI_XRAY_REPORT=null;
+let DVI_BATCH_ZIP=null;
+function labStatus(id,message,kind=''){
+  const el=$('#'+id);if(!el)return;el.className='lab-status'+(kind?' '+kind:'');el.textContent=message;
+}
+function safeVaultRead(){
+  try{const v=JSON.parse(localStorage.getItem(DVI_VAULT_KEY)||'[]');return Array.isArray(v)?v.filter(x=>x&&typeof x.name==='string'&&x.config?.format==='nminhios-dvi-config'&&x.config.version===1).slice(0,24):[];}catch(_){return[];}
+}
+function safeVaultWrite(){
+  try{localStorage.setItem(DVI_VAULT_KEY,JSON.stringify(DVI_VAULT));DVI_VAULT_SESSION_ONLY=false;return true;}
+  catch(_){DVI_VAULT_SESSION_ONLY=true;return true;}
+}
+function vaultSavedMessage(message){
+  labStatus('dviVaultStatus',message+(DVI_VAULT_SESSION_ONLY?'\nLưu ý: trình xem đang chặn bộ nhớ cục bộ. Preset vẫn dùng được trong phiên này; hãy xuất kho JSON để giữ lại khi đóng trang.':''),DVI_VAULT_SESSION_ONLY?'warn':'good');
+}
+function refreshVaultSelects(keep=''){
+  const ids=['dviVaultSelect','dviMixA','dviMixB'];
+  for(const id of ids){const el=$('#'+id),old=el.value;el.innerHTML=id==='dviVaultSelect'?'<option value="">Chọn preset đã lưu</option>':'<option value="">Chọn preset</option>';
+    DVI_VAULT.forEach((x,i)=>{const o=document.createElement('option');o.value=String(i);o.textContent=x.name;el.appendChild(o);});
+    const wanted=keep||old;if(wanted!==''&&Number(wanted)<DVI_VAULT.length)el.value=String(wanted);
+  }
+}
+function makeVaultEntry(name,config){return {name:String(name).trim().slice(0,36),savedAt:new Date().toISOString(),config};}
+function validateVaultConfig(config){
+  if(!config||config.format!=='nminhios-dvi-config'||config.version!==1||!config.settings||typeof config.settings!=='object'||Array.isArray(config.settings))throw new Error('Preset không đúng định dạng NMINHIOS DVI.');
+  const safe={};for(const id of DVI_CONFIG_IDS){if(Object.prototype.hasOwnProperty.call(config.settings,id))safe[id]=config.settings[id];}
+  if(!Object.keys(safe).length)throw new Error('Preset không có thông số DVI hợp lệ.');
+  return {...config,settings:safe};
+}
+$('#dviVaultSave')?.addEventListener('click',()=>{
+  const name=$('#dviVaultName').value.trim();if(!name){labStatus('dviVaultStatus','Nhập tên preset trước khi lưu.','warn');return;}
+  const duplicate=DVI_VAULT.findIndex(x=>x.name.toLowerCase()===name.toLowerCase());
+  const entry=makeVaultEntry(name,captureDviConfig());
+  if(duplicate>=0)DVI_VAULT[duplicate]=entry;else if(DVI_VAULT.length<24)DVI_VAULT.push(entry);else{labStatus('dviVaultStatus','Kho đã đạt 24 preset. Hãy xóa một preset cũ hoặc xuất kho ra JSON.','bad');return;}
+  if(!safeVaultWrite())return;refreshVaultSelects(String(DVI_VAULT.findIndex(x=>x.name===entry.name)));
+  $('#dviVaultName').value='';vaultSavedMessage(`Đã lưu “${name}”. Kho hiện có ${DVI_VAULT.length}/24 preset.`);
+});
+$('#dviVaultLoad')?.addEventListener('click',()=>{
+  const i=Number($('#dviVaultSelect').value);if(!Number.isInteger(i)||!DVI_VAULT[i]){labStatus('dviVaultStatus','Chọn một preset trong kho để nạp.','warn');return;}
+  try{const n=applyDviConfig(DVI_VAULT[i].config);labStatus('dviVaultStatus',`Đã nạp “${DVI_VAULT[i].name}” · ${n} thông số được áp dụng.`,'good');}catch(e){labStatus('dviVaultStatus',e.message||String(e),'bad');}
+});
+$('#dviVaultDelete')?.addEventListener('click',()=>{
+  const i=Number($('#dviVaultSelect').value);if(!Number.isInteger(i)||!DVI_VAULT[i]){labStatus('dviVaultStatus','Chọn preset cần xóa.','warn');return;}
+  const name=DVI_VAULT[i].name;DVI_VAULT.splice(i,1);safeVaultWrite();refreshVaultSelects();labStatus('dviVaultStatus',`Đã xóa “${name}”.`,'good');
+});
+function downloadLabFile(bytes,name,mime='application/octet-stream'){
+  const url=URL.createObjectURL(new Blob([bytes],{type:mime}));const a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),8000);
+}
+$('#dviVaultExport')?.addEventListener('click',()=>{
+  if(!DVI_VAULT.length){labStatus('dviVaultStatus','Kho đang trống.','warn');return;}
+  downloadLabFile(enc(JSON.stringify({format:'nminhios-dvi-vault',version:1,profiles:DVI_VAULT},null,2)),'nminhios-dvi-vault.json','application/json');labStatus('dviVaultStatus',`Đã xuất ${DVI_VAULT.length} preset thành JSON.`,'good');
+});
+$('#dviVaultImportTrigger')?.addEventListener('click',()=>$('#dviVaultImport')?.click());
+$('#dviVaultImport')?.addEventListener('change',async e=>{
+  const f=e.target.files?.[0];e.target.value='';if(!f)return;
+  try{
+    if(f.size>512*1024)throw new Error('File kho quá lớn (giới hạn 512 KiB).');
+    const data=JSON.parse(await f.text());if(data?.format!=='nminhios-dvi-vault'||data.version!==1||!Array.isArray(data.profiles))throw new Error('Không đúng định dạng DVI Vault v1.');
+    let added=0;for(const item of data.profiles){if(added>=24)break;if(!item||typeof item.name!=='string')continue;const config=validateVaultConfig(item.config);const name=item.name.trim().slice(0,36);if(!name)continue;const ix=DVI_VAULT.findIndex(x=>x.name.toLowerCase()===name.toLowerCase());const fresh=makeVaultEntry(name,config);if(ix>=0)DVI_VAULT[ix]=fresh;else if(DVI_VAULT.length<24){DVI_VAULT.push(fresh);added++;}}
+    safeVaultWrite();refreshVaultSelects();vaultSavedMessage(`Đã nhập/cập nhật ${data.profiles.length} mục; kho hiện có ${DVI_VAULT.length}/24 preset.`);
+  }catch(err){labStatus('dviVaultStatus','Không nhập được kho: '+(err.message||err),'bad');}
+});
+function sRGBtoLinear(c){c=Math.max(0,Math.min(1,c));return c<=.04045?c/12.92:Math.pow((c+.055)/1.055,2.4);}
+function linearToSRGB(c){c=Math.max(0,Math.min(1,c));return c<=.0031308?12.92*c:1.055*Math.pow(c,1/2.4)-.055;}
+function mixHex(a,b,t){const pa=hex2rgb(a),pb=hex2rgb(b);if(!pa||!pb)return t<.5?a:b;return rgb2hex(pa.map((v,i)=>linearToSRGB(sRGBtoLinear(v)*(1-t)+sRGBtoLinear(pb[i])*t)));}
+function mixSettings(a,b,t){
+  const out={};for(const id of DVI_CONFIG_IDS){const av=a?.[id],bv=b?.[id];if(av===undefined&&bv===undefined)continue;if(av===undefined){out[id]=bv;continue;}if(bv===undefined){out[id]=av;continue;}
+    if(DVI_COLOR_TEXT_PAIRS[id])out[id]=mixHex(av,bv,t);
+    else if(typeof av==='number'&&typeof bv==='number')out[id]=av+(bv-av)*t;
+    else if(typeof av==='string'&&typeof bv==='string'&&id==='dviTextSample')out[id]=t<.5?av:bv;
+    else out[id]=t<.5?av:bv;
+  }return out;
+}
+$('#dviMixRatio')?.addEventListener('input',()=>$('#dviMixRatioLabel').textContent=`${$('#dviMixRatio').value}% B`);
+function getMixPair(){const ia=Number($('#dviMixA').value),ib=Number($('#dviMixB').value);if(!Number.isInteger(ia)||!Number.isInteger(ib)||!DVI_VAULT[ia]||!DVI_VAULT[ib])throw new Error('Chọn đủ preset A và B trong kho.');return [DVI_VAULT[ia],DVI_VAULT[ib]];}
+function makeMixedConfig(){const [a,b]=getMixPair(),t=Number($('#dviMixRatio').value)/100;return {format:'nminhios-dvi-config',version:1,createdAt:new Date().toISOString(),settings:mixSettings(a.config.settings,b.config.settings,t),mix:{a:a.name,b:b.name,ratio:t}};}
+$('#dviMixApply')?.addEventListener('click',()=>{try{const c=makeMixedConfig(),n=applyDviConfig(c);labStatus('dviVaultStatus',`Đã phối ${c.mix.a} → ${c.mix.b} ở tỷ lệ ${Math.round(c.mix.ratio*100)}% B. ${n} thông số đã được áp dụng.`,'good');}catch(e){labStatus('dviVaultStatus',e.message||String(e),'bad');}});
+$('#dviMixSave')?.addEventListener('click',()=>{try{const c=makeMixedConfig(),name=$('#dviVaultName').value.trim();if(!name)throw new Error('Nhập tên mới ở ô “Tên preset mới” trước.');const ix=DVI_VAULT.findIndex(x=>x.name.toLowerCase()===name.toLowerCase());const entry=makeVaultEntry(name,c);if(ix>=0)DVI_VAULT[ix]=entry;else if(DVI_VAULT.length<24)DVI_VAULT.push(entry);else throw new Error('Kho đã đủ 24 preset.');safeVaultWrite();refreshVaultSelects(String(DVI_VAULT.findIndex(x=>x.name===name)));$('#dviVaultName').value='';vaultSavedMessage(`Đã lưu bản phối “${name}”.`);}catch(e){labStatus('dviVaultStatus',e.message||String(e),'bad');}});
+DVI_VAULT=safeVaultRead();refreshVaultSelects();
+
+/* ═══════════ UNITY BUNDLE X-RAY ═══════════ */
+function codecName(f){const c=f&0x3f;return ({0:'RAW',1:'LZMA',2:'LZ4',3:'LZ4HC'})[c]||`CODEC ${c}`;}
+function xrayCurrentBundle(){
+  if(!ORIG||!BUN)throw new Error('Chưa có bundle nào được nạp ở khu vực chọn file.');
+  const {data}=decompressAll(ORIG,BUN);const node=findPrimaryCABNode(BUN);const sf=parseSF(data.subarray(node.off,node.off+node.size));
+  const ab=sf.objs.find(o=>o.cid===142);if(!ab)throw new Error('Không có AssetBundle object để ánh xạ tên đường dẫn.');
+  const asset=readObj(sf,ab,null),pathByPID=new Map();for(const c of asset.m_Container||[])pathByPID.set(String(c.second.asset.m_PathID),String(c.first||'').replace(/\\/g,'/'));
+  const shaders=[];let propTotal=0,propErrors=0;
+  for(const o of sf.objs.filter(x=>x.cid===48)){
+    const path=pathByPID.get(String(o.pid))||`<shader pathID ${o.pid}>`;
+    try{const props=readShaderProps(objBody(sf,o));propTotal+=props.length;shaders.push({path,pid:String(o.pid),size:o.size,properties:props.map(p=>({name:p.name,description:p.desc,type:p.type,value:p.val.map(v=>Number.isFinite(v)?Number(v.toFixed(6)):String(v))}))});}
+    catch(e){propErrors++;shaders.push({path,pid:String(o.pid),size:o.size,properties:[],error:e.message||String(e)});}
+  }
+  const report={format:'nminhios-unity-bundle-xray',createdAt:new Date().toISOString(),bundle:{fileName:FILE?.name||'unknown',fileBytes:ORIG.length,formatVersion:BUN.fmt,unityVersion:BUN.uv,unityRevision:BUN.rev,flags:BUN.flags,blocks:BUN.blocks.map((b,i)=>({index:i,compressedBytes:b.c,uncompressedBytes:b.u,codec:codecName(b.f)})),nodes:BUN.nodes.map(n=>({name:n.name,offset:n.off,size:n.size,flags:n.flags}))},serializedFile:{version:sf.version,unityVersion:sf.unityVer,objectCount:sf.objs.length,shaderCount:shaders.length,propertyCount:propTotal,propertyParseErrors:propErrors,classCounts:Object.entries(sf.objs.reduce((m,o)=>(m[o.cid]=(m[o.cid]||0)+1,m),{})).map(([classID,count])=>({classID:Number(classID),count}))},shaders};
+  return report;
+}
+function renderXray(){
+  if(!DVI_XRAY_REPORT)return;
+  const q=$('#dviXrayFilter').value.trim().toLowerCase(),scope=$('#dviXrayScope').value;
+  const targets=['defaultavatar.shader','defaultavataralphablend.shader','skin.shader','glass.shader','cloth.shader','pbr_avatar.shader'];
+  const rows=[];
+  for(const sh of DVI_XRAY_REPORT.shaders){
+    const isTarget=targets.some(n=>sh.path.toLowerCase().endsWith('/'+n));
+    const selected=scope==='targets'?isTarget:scope==='properties'?sh.properties.some(p=>/color|glow|text|pulse|speed|outline|rainbow/i.test(p.name)):true;
+    if(!selected)continue;
+    const props=sh.properties.filter(p=>!q||`${p.name} ${p.description} ${JSON.stringify(p.value)}`.toLowerCase().includes(q));
+    if(q&&!sh.path.toLowerCase().includes(q)&&!props.length)continue;
+    if(!q||sh.path.toLowerCase().includes(q)||props.length){
+      if(!props.length)rows.push(`<tr><td><code>${esc(sh.path)}</code></td><td>${sh.size.toLocaleString('vi-VN')} B</td><td>${sh.error?'Lỗi đọc property':String(sh.properties.length)+' properties'}</td><td>${esc(sh.error||'—')}</td></tr>`);
+      else for(const pr of props.slice(0,200))rows.push(`<tr><td><code>${esc(sh.path)}</code><br><small>${esc(pr.name)}</small></td><td>${sh.size.toLocaleString('vi-VN')} B</td><td>${esc(JSON.stringify(pr.value))}</td><td>${pr.type}</td></tr>`);
+    }
+  }
+  $('#dviXrayTable').hidden=false;$('#dviXrayTable').innerHTML=`<table class="lab-table"><thead><tr><th>SHADER / PROPERTY</th><th>SIZE</th><th>VALUE</th><th>TYPE</th></tr></thead><tbody>${rows.slice(0,500).join('')||'<tr><td colspan="4">Không tìm thấy kết quả phù hợp.</td></tr>'}</tbody></table>`;
+}
+$('#dviXrayScan')?.addEventListener('click',()=>{
+  const btn=$('#dviXrayScan');btn.disabled=true;btn.textContent='ĐANG SOI…';
+  try{
+    DVI_XRAY_REPORT=xrayCurrentBundle();const r=DVI_XRAY_REPORT;
+    $('#dviXrayMetrics').hidden=false;$('#dviXrayMetrics').innerHTML=`<div class="lab-metric"><b>${r.serializedFile.objectCount}</b><small>OBJECTS</small></div><div class="lab-metric"><b>${r.serializedFile.shaderCount}</b><small>SHADERS</small></div><div class="lab-metric"><b>${r.serializedFile.propertyCount}</b><small>PROPERTIES</small></div>`;
+    $('#dviXrayExport').disabled=false;renderXray();
+    const shaderSelect=$('#dviPatchShader');shaderSelect.innerHTML='';r.shaders.forEach((sh,i)=>{const op=document.createElement('option');op.value=String(i);op.textContent=sh.path;shaderSelect.appendChild(op);});syncPropertyChoices();
+    labStatus('dviXrayStatus',`Đã quét ${r.bundle.fileName}\nUnity ${r.bundle.unityVersion} · SerializedFile v${r.serializedFile.version}\n${r.bundle.blocks.length} block · ${r.bundle.blocks.map(x=>x.codec).join(', ')}\n${r.serializedFile.propertyParseErrors} shader không đọc được property; chúng vẫn được giữ trong báo cáo.`,r.serializedFile.propertyParseErrors?'warn':'good');
+  }catch(e){labStatus('dviXrayStatus','Quét thất bại: '+(e.message||e),'bad');}
+  finally{btn.disabled=false;btn.textContent='QUÉT BUNDLE ĐANG MỞ';}
+});
+$('#dviXrayFilter')?.addEventListener('input',renderXray);$('#dviXrayScope')?.addEventListener('change',renderXray);
+$('#dviXrayExport')?.addEventListener('click',()=>{if(!DVI_XRAY_REPORT)return;downloadLabFile(enc(JSON.stringify(DVI_XRAY_REPORT,null,2)),'nminhios-unity-bundle-xray.json','application/json');labStatus('dviXrayStatus','Đã xuất toàn bộ báo cáo X-Ray dạng JSON.','good');});
+
+
+/* ═══════════ SHADER PROPERTY LAB · EDIT ONE VERIFIED PROPERTY ═══════════ */
+let DVI_CUSTOM_PATCH_OUTPUT=null;
+const DVI_SHADER_PROPERTY_TYPES={0:'Color',1:'Vector',2:'Float',3:'Range',4:'Texture'};
+function selectedXrayShader(){const i=Number($('#dviPatchShader').value);if(!Number.isInteger(i)||!DVI_XRAY_REPORT?.shaders?.[i])return null;return {shader:DVI_XRAY_REPORT.shaders[i],index:i};}
+function syncPropertyChoices(){
+  const selected=selectedXrayShader(),el=$('#dviPatchProperty');el.innerHTML='<option value="">Chọn property</option>';
+  if(!selected)return;
+  selected.shader.properties.forEach((p,i)=>{const o=document.createElement('option');o.value=String(i);o.textContent=`${p.name} · ${DVI_SHADER_PROPERTY_TYPES[p.type]||'Type '+p.type}`;el.appendChild(o);});
+  if(el.options.length>1){el.value='1';syncPropertyValues();}
+}
+function syncPropertyValues(){
+  const selected=selectedXrayShader(),index=Number($('#dviPatchProperty').value);if(!selected||!Number.isInteger(index)||!selected.shader.properties[index])return;
+  const p=selected.shader.properties[index],type=DVI_SHADER_PROPERTY_TYPES[p.type]||`Type ${p.type}`;
+  $('#dviPatchType').textContent=`${selected.shader.path}\n${p.name} · ${type}\nGiá trị gốc: ${JSON.stringify(p.value)}`;
+  ['X','Y','Z','W'].forEach((axis,i)=>{$('#dviPatch'+axis).value=String(p.value[i]??0);$('#dviPatch'+axis).disabled=(p.type===2||p.type===3)&&i>0;});
+  DVI_CUSTOM_PATCH_OUTPUT=null;$('#dviPatchDownload').disabled=true;
+  labStatus('dviPatchStatus',p.type===4?'Property Texture chỉ xem được, không cho sửa bằng bộ nhập float.':'Đã nạp giá trị gốc. Hãy chỉnh kênh cần thay đổi rồi nhấn SỬA PROPERTY VÀ KIỂM TRA.');
+}
+$('#dviPatchShader')?.addEventListener('change',syncPropertyChoices);
+$('#dviPatchProperty')?.addEventListener('change',syncPropertyValues);
+$('#dviPatchReset')?.addEventListener('click',syncPropertyValues);
+async function applyCustomShaderPropertyPatch(path,propertyIndex,newValues){
+  if(!ORIG||!BUN)throw new Error('Chưa có file nguồn.');
+  if(BUN.rev!=='2018.4.12f1')throw new Error(`Chỉ hỗ trợ Unity 2018.4.12f1; file hiện tại ${BUN.rev||'không rõ'}.`);
+  const {data,blockAt}=decompressAll(ORIG,BUN),node=findPrimaryCABNode(BUN),sf=parseSF(data.subarray(node.off,node.off+node.size));
+  if(sf.version!==22||sf.unityVer!=='2018.4.12f1')throw new Error('SerializedFile không đúng v22 / Unity 2018.4.12f1.');
+  const ab=sf.objs.find(o=>o.cid===142);if(!ab)throw new Error('Không có AssetBundle object.');
+  const asset=readObj(sf,ab,null),pathByPID=new Map();for(const c of asset.m_Container||[])pathByPID.set(String(c.second.asset.m_PathID),String(c.first||'').replace(/\\/g,'/'));
+  const hits=sf.objs.filter(o=>o.cid===48&&pathByPID.get(String(o.pid))===path);
+  if(hits.length!==1)throw new Error(`Shader ${path} phải xuất hiện đúng một lần; tìm thấy ${hits.length}.`);
+  const o=hits[0],body=objBody(sf,o).slice(),props=readShaderProps(body),prop=props[propertyIndex];
+  if(!prop)throw new Error('Không tìm thấy property ở chỉ số đã quét.');
+  if(prop.type===4)throw new Error('Property Texture không thể sửa bằng bộ giá trị số.');
+  if(![0,1,2,3].includes(prop.type))throw new Error(`Property type ${prop.type} chưa được hỗ trợ an toàn.`);
+  if(!Array.isArray(newValues)||newValues.length!==4||newValues.some(v=>!Number.isFinite(v)||Math.abs(v)>1000000))throw new Error('Giá trị nhập phải là bốn số hữu hạn trong khoảng ±1.000.000.');
+  if((prop.type===2||prop.type===3)&&newValues.slice(1).some((v,i)=>!Object.is(Math.fround(v),Math.fround(prop.val[i+1]))))throw new Error('Float/Range chỉ cho phép chỉnh kênh X; Y/Z/W phải giữ nguyên.');
+  const dv=new DataView(body.buffer,body.byteOffset,body.byteLength),expected=newValues.map(Math.fround);
+  if(prop.type===2||prop.type===3){expected[1]=Math.fround(prop.val[1]);expected[2]=Math.fround(prop.val[2]);expected[3]=Math.fround(prop.val[3]);}
+  const before=prop.val.map(Math.fround),writeCount=(prop.type===2||prop.type===3)?1:4;for(let i=0;i<writeCount;i++)dv.setFloat32(prop.valOff+i*4,expected[i],true);
+  const repl=new Map([[o.pid,body]]),expectedData=data.slice(),abs=node.off+sf.dataOffset+o.off+prop.valOff;
+  for(let i=0;i<writeCount;i++)new DataView(expectedData.buffer).setFloat32(abs+i*4,expected[i],true);
+  const out=rebuildShaders(ORIG,BUN,data,blockAt,sf,node,repl),outBundle=parseBundle(out),decoded=decompressAll(out,outBundle);
+  if(decoded.data.length!==expectedData.length)throw new Error('Kích thước dữ liệu giải nén thay đổi bất thường.');
+  for(let i=0;i<expectedData.length;i++)if(decoded.data[i]!==expectedData[i])throw new Error(`Xác minh byte không khớp tại ${i}; hủy xuất.`);
+  const outNode=outBundle.nodes.find(n=>n.name===node.name);if(!outNode||outNode.off!==node.off||outNode.size!==node.size)throw new Error('Vị trí/kích thước CAB không khớp sau khi xuất.');
+  const outSF=parseSF(decoded.data.subarray(outNode.off,outNode.off+outNode.size)),outObj=outSF.objs.find(x=>String(x.pid)===String(o.pid));
+  if(!outObj||outObj.size!==o.size)throw new Error('Object đích mất hoặc đổi kích thước sau khi xuất.');
+  const afterProp=readShaderProps(objBody(outSF,outObj))[propertyIndex];if(!afterProp||afterProp.val.some((v,i)=>!Object.is(Math.fround(v),expected[i])))throw new Error('Giá trị property sau xuất không khớp.');
+  return {out,before,after:expected,objectPath:path,property:prop.name,type:prop.type,objectSize:o.size};
+}
+$('#dviPatchApply')?.addEventListener('click',async()=>{
+  const chosen=selectedXrayShader(),index=Number($('#dviPatchProperty').value);if(!chosen||!Number.isInteger(index)||!chosen.shader.properties[index]){labStatus('dviPatchStatus','Hãy quét bundle và chọn shader/property trước.','warn');return;}
+  const property=chosen.shader.properties[index];if(property.type===4){labStatus('dviPatchStatus','Texture không thể sửa qua trường số. Chọn Color, Vector, Float hoặc Range.','warn');return;}
+  const values=['X','Y','Z','W'].map(a=>Number($('#dviPatch'+a).value));if(values.some(v=>!Number.isFinite(v))){labStatus('dviPatchStatus','Bốn kênh phải là số hợp lệ.','bad');return;}
+  const btn=$('#dviPatchApply');btn.disabled=true;btn.textContent='ĐANG SỬA & XÁC MINH…';DVI_CUSTOM_PATCH_OUTPUT=null;$('#dviPatchDownload').disabled=true;
+  try{
+    const res=await applyCustomShaderPropertyPatch(chosen.shader.path,index,values);DVI_CUSTOM_PATCH_OUTPUT=res.out;$('#dviPatchDownload').disabled=false;
+    labStatus('dviPatchStatus',`ĐÃ XÁC MINH THÀNH CÔNG\nShader: ${res.objectPath}\nProperty: ${res.property} · ${DVI_SHADER_PROPERTY_TYPES[res.type]}\nTrước: ${JSON.stringify(res.before)}\nSau: ${JSON.stringify(res.after)}\nChỉ đúng 16 byte giá trị property được thay đổi; kích thước object giữ ${res.objectSize.toLocaleString('vi-VN')} byte.`, 'good');
+  }catch(e){labStatus('dviPatchStatus','Không tạo được bản chỉnh: '+(e.message||e),'bad');}
+  finally{btn.disabled=false;btn.textContent='SỬA PROPERTY VÀ KIỂM TRA';}
+});
+$('#dviPatchDownload')?.addEventListener('click',()=>{if(!DVI_CUSTOM_PATCH_OUTPUT)return;const base=cleanOutputName((FILE?.name||'shader-bundle').replace(/\.[^.]+$/,''));const extension=FILE?.name.match(/\.[^.]+$/)?.[0]||'.bundle';const name=base+'_property-edited'+extension;downloadLabFile(DVI_CUSTOM_PATCH_OUTPUT,name,'application/octet-stream');});
+
+/* ═══════════ BATCH FORGE + ZIP STORE ═══════════ */
+function crc32Bytes(bytes){let c=0xffffffff;for(let i=0;i<bytes.length;i++){c^=bytes[i];for(let k=0;k<8;k++)c=(c>>>1)^((c&1)?0xedb88320:0);}return (c^0xffffffff)>>>0;}
+function dosStamp(date=new Date()){const y=Math.max(1980,date.getFullYear());return {time:(date.getHours()<<11)|(date.getMinutes()<<5)|(date.getSeconds()>>1),date:((y-1980)<<9)|((date.getMonth()+1)<<5)|date.getDate()};}
+function zipStore(entries){
+  const local=[],central=[];let offset=0;const stamp=dosStamp();
+  for(const entry of entries){const name=enc(entry.name),data=entry.data;if(name.length>65535||data.length>0xffffffff)throw new Error('Tên hoặc kích thước file vượt giới hạn ZIP32.');const crc=crc32Bytes(data);const h=new Uint8Array(30+name.length),d=new DataView(h.buffer);d.setUint32(0,0x04034b50,true);d.setUint16(4,20,true);d.setUint16(6,0,true);d.setUint16(8,0,true);d.setUint16(10,stamp.time,true);d.setUint16(12,stamp.date,true);d.setUint32(14,crc,true);d.setUint32(18,data.length,true);d.setUint32(22,data.length,true);d.setUint16(26,name.length,true);d.setUint16(28,0,true);h.set(name,30);local.push(h,data);const c=new Uint8Array(46+name.length),v=new DataView(c.buffer);v.setUint32(0,0x02014b50,true);v.setUint16(4,20,true);v.setUint16(6,20,true);v.setUint16(8,0,true);v.setUint16(10,0,true);v.setUint16(12,stamp.time,true);v.setUint16(14,stamp.date,true);v.setUint32(16,crc,true);v.setUint32(20,data.length,true);v.setUint32(24,data.length,true);v.setUint16(28,name.length,true);v.setUint16(30,0,true);v.setUint16(32,0,true);v.setUint16(34,0,true);v.setUint16(36,0,true);v.setUint32(38,0,true);v.setUint32(42,offset,true);c.set(name,46);central.push(c);offset+=h.length+data.length;}
+  const centralSize=central.reduce((n,x)=>n+x.length,0),end=new Uint8Array(22),dv=new DataView(end.buffer);dv.setUint32(0,0x06054b50,true);dv.setUint16(4,0,true);dv.setUint16(6,0,true);dv.setUint16(8,entries.length,true);dv.setUint16(10,entries.length,true);dv.setUint32(12,centralSize,true);dv.setUint32(16,offset,true);dv.setUint16(20,0,true);return concatU8(...local,...central,end);
+}
+function dviOptionsFromUI(){
+  const grab=id=>{const v=hex2rgb($('#'+id).value);if(!v)throw new Error(`Mã màu không hợp lệ ở ${id}.`);return v;};
+  const num=id=>{const v=Number($('#'+id).value);if(!Number.isFinite(v))throw new Error(`Giá trị không hợp lệ ở ${id}.`);return v;};
+  const o={main:grab('tDviMain'),mainAlpha:num('rDviMainA'),text:grab('tDviText'),outlineWidth:num('rDviOutline'),speed:num('rDviSpeed'),spread:num('rDviSpread'),pulse:$('#kDviPulse').checked,pulseAmount:num('rDviPulseAmount'),pulseSpeed:num('rDviPulseSpeed'),pulseMin:num('rDviPulseMin'),pulseMax:num('rDviPulseMax'),textEnabled:$('#kDviText').checked,textSize:num('rDviTextSize'),textStretch:num('rDviTextStretch'),textLineHeight:num('rDviTextLine'),textRotation:num('rDviRotation'),textSpeedX:num('rDviTextSpeedX'),textSpeedY:num('rDviTextSpeedY'),textOpacity:num('rDviTextOpacity'),textGlow:num('rDviTextGlow'),textFlip:$('#kDviTextFlip').checked,textMapping:$('#dviTextMapping').value==='1',backWeapon:$('#kDviBackWeapon').checked,backZ:num('rDviBackZ'),backW:num('rDviBackW')};
+  if(o.pulseMin>o.pulseMax)throw new Error('Nhịp sáng tối thiểu lớn hơn tối đa.');return o;
+}
+function cleanOutputName(name){return String(name||'bundle').replace(/[\\/:*?"<>|\u0000-\u001f]/g,'_').replace(/\.+$/,'').slice(0,100)||'bundle';}
+$('#dviBatchRun')?.addEventListener('click',async()=>{
+  const files=Array.from($('#dviBatchFiles').files||[]),btn=$('#dviBatchRun');DVI_BATCH_ZIP=null;$('#dviBatchDownload').disabled=true;$('#dviBatchList').innerHTML='';
+  if(!files.length){labStatus('dviBatchStatus','Chọn ít nhất một file nguồn.','warn');return;}
+  const total=files.reduce((n,f)=>n+f.size,0);if(files.length>20||total>100*1024*1024){labStatus('dviBatchStatus','Vượt giới hạn: tối đa 20 file và tổng 100 MiB.','bad');return;}
+  let opt;try{opt=dviOptionsFromUI();}catch(e){labStatus('dviBatchStatus',e.message||String(e),'bad');return;}
+  btn.disabled=true;btn.textContent='ĐANG MAKE…';const entries=[],lines=[];let passed=0,failed=0;
+  try{
+    for(let i=0;i<files.length;i++){
+      const f=files[i];labStatus('dviBatchStatus',`Đang xử lý ${i+1}/${files.length}: ${f.name}\n${passed} thành công · ${failed} bỏ qua`);
+      try{
+        const bytes=new Uint8Array(await f.arrayBuffer()),bun=parseBundle(bytes),det=detectKind(bytes,bun);
+        if(!det.dviCapable)throw new Error(det.why||'Không có sáu shader DVI mục tiêu hoặc cấu trúc không tương thích.');
+        const result=await applyPresetDvi(bytes,bun,opt);const base=cleanOutputName(f.name.replace(/\.[^.]+$/,''));let outputName=base+'_DVI'+(f.name.match(/\.[^.]+$/)?.[0]||'.bundle');
+        if(entries.some(x=>x.name===outputName))outputName=`${base}_${i+1}_DVI${f.name.match(/\.[^.]+$/)?.[0]||'.bundle'}`;
+        entries.push({name:outputName,data:result.out});passed++;lines.push({name:f.name,ok:true,output:outputName,bytes:result.out.length,note:result.note});
+        $('#dviBatchList').insertAdjacentHTML('beforeend',`<div class="lab-batch-item"><span>${esc(f.name)}</span><span>✓ OK</span></div>`);
+      }catch(e){failed++;lines.push({name:f.name,ok:false,error:e.message||String(e)});$('#dviBatchList').insertAdjacentHTML('beforeend',`<div class="lab-batch-item fail"><span>${esc(f.name)} · ${esc(e.message||String(e))}</span><span>BỎ QUA</span></div>`);}
+    }
+    if(!entries.length)throw new Error('Không có file nào vượt qua kiểm tra tương thích.');
+    const manifest={format:'nminhios-dvi-batch-report',createdAt:new Date().toISOString(),succeeded:passed,skipped:failed,files:lines};entries.push({name:'nminhios-batch-report.json',data:enc(JSON.stringify(manifest,null,2))});
+    DVI_BATCH_ZIP=zipStore(entries);$('#dviBatchDownload').disabled=false;labStatus('dviBatchStatus',`Hoàn tất: ${passed} file thành công, ${failed} file bị bỏ qua.\nGói ZIP: ${DVI_BATCH_ZIP.length.toLocaleString('vi-VN')} byte. File báo cáo đã được kèm vào ZIP.`,failed?'warn':'good');
+  }catch(e){labStatus('dviBatchStatus','Batch Forge dừng: '+(e.message||e),'bad');}
+  finally{btn.disabled=false;btn.textContent='BẮT ĐẦU MAKE HÀNG LOẠT';}
+});
+$('#dviBatchDownload')?.addEventListener('click',()=>{if(!DVI_BATCH_ZIP)return;downloadLabFile(DVI_BATCH_ZIP,'nminhios-DVI-batch.zip','application/zip');});
+$('#dviBatchClear')?.addEventListener('click',()=>{$('#dviBatchFiles').value='';$('#dviBatchList').innerHTML='';DVI_BATCH_ZIP=null;$('#dviBatchDownload').disabled=true;labStatus('dviBatchStatus','Đã xóa danh sách batch.');});
+
+
 /* drag & drop */
 const drop = $('#drop'), input = $('#file');
 /* Không gọi input.click() bằng JS: input tàng hình phủ trực tiếp vùng chọn,
@@ -3015,5 +4044,38 @@ input.addEventListener('change', () => {
 drop.addEventListener('drop', e => { const f = e.dataTransfer.files[0]; if (f) load(f); });
 </script>
 
+
+
+<script>
+(() => {
+  const nav = document.querySelector('.module-nav');
+  if (!nav) return;
+  const $q = (sel) => document.querySelector(sel);
+  function currentControls(){
+    const selected = $q('input[name="p"]:checked')?.value;
+    const ids = selected === '3' ? ['gunModePicker','gunTargetBox','gunLookBox']
+      : selected === '4' ? ['characterModePicker','holoBox','dviBox']
+      : selected === '5' ? ['assetBox'] : [];
+    for (const id of ids){
+      const el = document.getElementById(id);
+      if (el && !el.classList.contains('off')) return el;
+    }
+    return document.getElementById('moduleSection');
+  }
+  nav.addEventListener('click', (event) => {
+    const button = event.target.closest('[data-jump]');
+    if (!button) return;
+    let target;
+    const key = button.dataset.jump;
+    if (key === 'controls') target = currentControls();
+    else if (key === 'export') target = document.querySelector('#out')?.children.length
+      ? document.getElementById('out') : document.getElementById('buildAction');
+    else target = document.getElementById(key);
+    if (!target) return;
+    nav.querySelectorAll('.nav-item').forEach(item => item.classList.toggle('active', item === button));
+    target.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',block:'start'});
+  });
+})();
+</script>
 
 </body></html>
